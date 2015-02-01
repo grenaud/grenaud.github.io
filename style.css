@@ -1,6 +1,6 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
+	font-size: 12px;
 	background-color: #AAB4BF;
 }
 
@@ -33,7 +33,7 @@ a:hover {
 	color: #2C2220;
 	font-family: Helvetica, sans-serif;
 	font-weight: normal;
-	font-size: 11px;
+	font-size: 12px;
 	letter-spacing: 5px;
 	text-transform: uppercase;
 	background:url(DSC00504.JPG) top left no-repeat;
@@ -46,7 +46,7 @@ a:hover {
 	color: #999;
 	font-family: 'Gill Sans', Verdana, Helvetica, sans-serif;
 	font-weight: normal;
-	font-size: 11px;
+	font-size: 12px;
 }
 
 #nav li {
@@ -56,7 +56,7 @@ a:hover {
 }
 
 #nav a {
-	font-size: 10px;
+	font-size: 12px;
 	font-weight: bold;
 	color: #999;
 	text-decoration: none;
@@ -75,8 +75,7 @@ a:hover {
 }
 
 #content h1 {
-
-font-size: 12px;
+font-size: 14px;
 
 }
 
@@ -94,7 +93,7 @@ font-size: 12px;
 }
 
 #content h2 { 
-font-size: 10px;
+font-size: 12px;
 letter-spacing: 3px;
 text-transform: uppercase;
 }
