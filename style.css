@@ -93,12 +93,12 @@ font-size: 14px;
 }
 
 #content h2 { 
-font-size: 12px;
-letter-spacing: 3px;
-text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 #foot {
-text-align: center;
-color: #333333;
+    text-align: center;
+    color: #333333;
 }
