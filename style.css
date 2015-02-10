@@ -15,7 +15,7 @@ a:hover {
 }
 
 #thebox {
-	width: 50em;
+	width: 600px;
 	background-color: white;
 	color: #666;
 	border: 1px #cccccc solid;
@@ -25,7 +25,7 @@ a:hover {
 
 #logo { 
 	text-align: left;
-	width: 350px;
+	width: 150px;
 	height: 164px;
 	margin: 0px 5px -300px 10px;
 	padding: 200px 10px 5px 10px;
@@ -40,7 +40,7 @@ a:hover {
 }
 
 #nav {
-	width: 655px;
+	width: 450px;
 	margin: -65px 0px 50px 100px;
 	padding: 0px 0px 0px 80px;
 	color: #999;
