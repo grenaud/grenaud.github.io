@@ -1,0 +1,283 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <body>
+<p>
+merge pdf:
+</p>
+<pre class="wiki">pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
+</pre>
+
+<p>
+split pdf:
+</p>
+<pre class="wiki">pdftk  in.pdf  burst  output out_%02d.pdf
+</pre>
+
+
+<p>
+grep for tabs:
+</p>
+<pre class="wiki">
+  grep -P "\t"
+</pre>
+
+<p>
+To add a single value absent from a R array: 
+</p>
+<pre class="wiki">levels(x[whaterver])&lt;-c(levels(x[whaterver]),newvalue)
+x[whaterver,4]=newvalue
+</pre>
+
+<p>
+Multiple sort:
+</p>
+<pre class="wiki">sort  -k10,10 -k1nr,1 
+</pre>
+
+<p>
+sort on tabs:
+</p>
+<pre class="wiki">sort  -t$'\t'  -k1nr,1 
+</pre>
+
+
+<p>
+Qual scores:
+</p>
+<pre class="wiki">| cut -f 11 |tr -d "\n"| od -t d1 |awk '{for(i=2;i&lt;=NF;i++){printf "%s ",($i-33);} printf "\n";}'
+</pre>
+
+
+<p>
+Average per bin:
+</p>
+<pre class="wiki">   |awk '{print int($1/binsize)"\t"$2}' |sort -n  |avrgPerBin.pl
+</pre>
+
+<p>
+Screen
+</p>
+<pre class="wiki">screen -h 30000 -S test 
+screen -x test 
+screen -ls
+</pre>
+
+
+<p>
+scroll:
+</p>
+<pre class="wiki">ctrl-a [
+</pre>
+
+
+<p>
+shift round:
+</p>
+<pre class="wiki">|awk '{printf("%d %d\n",($1*10+1000),($2*10+1000))}'
+</pre>
+
+<p>
+find with size:
+</p>
+<pre class="wiki">find -exec ls --size {} \;
+</pre>
+
+<p>
+Webserver:
+</p>
+<pre class="wiki">ssh gabriel_renaud@bioinf
+directory:/var/www/bioinf/htdocs/
+</pre>
+
+<p>
+Iterate over tiles hiseq:
+</p>
+<pre class="wiki">for i in {1..8}; 
+do
+for j in {{1101..1116},{1201..1216},{2101..2116},{2201..2216}};
+do
+/mnt/solexa/bin/pipeline3.0/estimateControlReadsBCL/estimateControlReadsBCL 96 TTGCCGC "$i" "$j" /mnt/solexa/120509_SN7001204_0137_AC0RMEACXX_PEdi_SS_L9351_1/Data/Intensities/BaseCalls/; 
+done; 
+done
+</pre>
+
+<p>
+Rapid run:
+</p>
+<pre class="wiki">for i in {1..2}; 
+do
+for j in {{1101..1116},{1201..1216},{2101..2116},{2201..2216}};
+do
+/mnt/solexa/bin/pipeline3.0/estimateControlReadsBCL/estimateControlReadsBCL 96 CGATTCG "$i" "$j" /mnt/solexa/120509_SN7001204_0137_AC0RMEACXX_PEdi_SS_L9351_1/Data/Intensities/BaseCalls/; 
+done; 
+done
+</pre>
+
+<p>
+Iterate over tiles ga:
+</p>
+<pre class="wiki">for i in {1..8}; 
+do
+for j in {1..120};
+do
+/mnt/solexa/bin/pipeline3.0/estimateControlReadsBCL/estimateControlReadsBCL 96 TTGCCGC "$i" "$j" /mnt/solexa/120509_SN7001204_0137_AC0RMEACXX_PEdi_SS_L9351_1/Data/Intensities/BaseCalls/; 
+done; 
+done
+</pre>
+
+
+<p>
+List packages:
+</p>
+<pre class="wiki">dpkg -l
+</pre>
+
+<p>
+List files for a given package:
+</p>
+<pre class="wiki">dpkg -L [package]
+</pre>
+
+<p>
+Git commands:
+Initialize the directory:
+</p>
+<pre class="wiki">git init
+git add [files]
+git commit -m 'first commit'
+git remote add origin git@github.com:grenaud/[project].git
+git push -u origin master
+</pre>
+
+
+<p>
+Commiting:
+</p>
+<pre class="wiki">git commit -a -m "Adding stuff"
+git push -u origin master
+</pre>
+
+<p>
+Check if up to date:
+</p>
+<pre class="wiki">git status
+git pull origin master
+</pre><pre class="wiki">git clone https://github.com/grenaud/schmutzi.git
+git fetch origin
+git checkout gh-pages
+</pre>
+
+<p>
+gvfs 
+</p>
+<pre class="wiki">killall gvfs-fuse-daemon
+/usr/lib/gvfs/gvfs-fuse-daemon ~/.gvfs 
+gvfs-mount smb://biofs06/data
+ls /var/run/user/2331/gvfs/smb-share\:server\=biofs06\,share\=data/
+</pre>
+
+<p>
+Useful link for git cmds:
+<a class="ext-link" href="http://scottr.org/presentations/git-in-5-minutes/"><span class="icon">​</span>http://scottr.org/presentations/git-in-5-minutes/</a>
+</p>
+
+
+<p>
+Check error code jobs:
+</p>
+<pre class="wiki">qacct -j [job id]
+</pre>
+
+<p>
+trim white spaces pdf
+</p>
+<pre class="wiki">pdfcrop old.pdf new.pdf 
+</pre>
+
+<p>
+convert pdf to image 300dpi:
+</p>
+<pre class="wiki">convert -density 300x300 
+</pre>
+
+<p>
+put label on figure:
+</p>
+<pre class="wiki">composite   -geometry +10+10 -size 80 -density 300x300   label:'A)' figurein.pdf figureout.pdf
+composite  -geometry +1400+0 -size 80 -density 300x300   label:'B)' figurein.pdf  figureout.pdf
+</pre>
+
+<p>
+Put figures side by side or top to bottom:
+</p>
+<pre class="wiki">convert -density 300x300  figure1.pdf figure2.pdf +append out.pdf
+convert -density 300x300  figure1.pdf figure2.pdf -append out.pdf
+</pre>
+
+<p>
+convert pdf to compressed tiff:
+</p>
+<pre class="wiki">convert -density 300x300  -compress lzw
+</pre>
+
+<p>
+convert pdf to ps:
+</p>
+<pre class="wiki">for i in `ls *pdf`;
+do 
+echo $i;
+convert  ${i:0:-4}.pdf ${i:0:-4}.eps
+done 
+</pre>
+
+
+
+
+<p>
+using OLB:
+On old runs, go from tif to intensities,  put run in /mnt/solexa/ to make sure we have Instruments/
+</p>
+<pre class="wiki">~/OLB-1.6.0/bin/goat_pipeline.py --make /mnt/solexa/100708_SOLEXA-GA02_0006_PEi_SR_DH_MW/
+</pre>
+
+<p>
+view json
+</p>
+<pre class="wiki">cat  131018_M00518_0180_000000000-A4TK9_TM_Fox+Phi_AW17102013_1.json  |jq  .
+</pre>
+
+
+<p>
+remove bounding box on ps files:
+</p>
+<pre class="wiki">ps2eps -B -C &lt; in.eps &gt;  out.eps
+</pre>
+
+<p>
+transpose column unix:
+</p>
+<pre class="wiki">awk 'BEGIN{FS="\t"}{ for (i = 1; i &lt;= NF; i++) f[i] = f[i] " " $i ; if (NF &gt; n) n = NF } END { for (i = 1; i &lt;= n; i++) sub(/^  */, "", f[i]) ; for (i = 1; i &lt;= n; i++) print f[i] }'
+</pre>
+
+<p>
+Add bash variables to awk:
+</p>
+<pre class="wiki">root="/webroot"
+echo | awk -v r=$root '{ print "shell root value - " r}'
+</pre>
+
+
+
+<p>
+Check process on port:
+</p>
+<pre class="wiki">lsof -i tcp:8088
+</pre>
+
+    
+
+	
+  </body>
+
+</html>
