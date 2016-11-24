@@ -14,6 +14,12 @@ split pdf:
 <pre class="wiki">pdftk  in.pdf  burst  output out_%02d.pdf
 </pre>
 
+<p>
+merge pdfs into a single page:
+</p>
+<pre class="wiki">montage -density 300x300 -geometry 1200x900 input_0*pdf output.pdf 
+</pre>
+
 
 <p>
 grep for tabs:
