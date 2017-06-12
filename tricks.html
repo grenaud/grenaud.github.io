@@ -283,6 +283,14 @@ Add bash variables to awk:
 echo | awk -v r=$root '{ print "shell root value - " r}'
 </pre>
 
+	    
+<p>
+Make awk print a single quote:
+</p>
+<pre class="wiki">root="/webroot"
+echo |awk '{print "\x27"}'
+</pre>
+
 
 
 <p>
