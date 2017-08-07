@@ -275,7 +275,14 @@ cat input.fa  | fasta2oneLine |awk '{printf("%s\t",$1); Ns=0; for(i=0;i<length($
 </pre>
 
 
-	    
+<p>
+Bash: If then else file exists
+</p>
+<pre class="wiki">
+if [ -e $i ]; then echo "YES "$i; else echo "NOT "$i; fi;
+</pre>
+
+
 <p>
 Add bash variables to awk:
 </p>
