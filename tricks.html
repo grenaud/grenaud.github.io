@@ -308,6 +308,15 @@ Check process on port:
 
     
 
+<p>
+Replace spaces in filenames by underscores:
+</p>
+<pre class="wiki">
+for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
+</pre>
+
+    
+
 	
   </body>
 
