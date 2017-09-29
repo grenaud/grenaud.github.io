@@ -221,6 +221,14 @@ Put figures side by side or top to bottom:
 convert -density 300x300  figure1.pdf figure2.pdf -append out.pdf
 </pre>
 
+
+<p>
+Add a border of 50px at the top:
+</p>
+<pre class="wiki">
+convert  -bordercolor White -gravity south -extent  `pdfinfo in.pdf  |grep "Page size"|awk '{print $3""$4""($5+50)}'`  in.pdf out.pdf
+</pre>
+
 <p>
 convert pdf to compressed tiff:
 </p>
