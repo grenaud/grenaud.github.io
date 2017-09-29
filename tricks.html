@@ -210,8 +210,8 @@ convert pdf to image 300dpi:
 <p>
 put label on figure:
 </p>
-<pre class="wiki">composite   -geometry +10+10 -size 80 -density 300x300   label:'A)' figurein.pdf figureout.pdf
-composite  -geometry +1400+0 -size 80 -density 300x300   label:'B)' figurein.pdf  figureout.pdf
+<pre class="wiki">composite -background none  -geometry +10+10 -size 80 -density 300x300   label:'A)' figurein.pdf figureout.pdf
+composite -background none -geometry +1400+0 -size 80 -density 300x300   label:'B)' figurein.pdf  figureout.pdf
 </pre>
 
 <p>
