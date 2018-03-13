@@ -223,10 +223,10 @@ convert -density 300x300  figure1.pdf figure2.pdf -append out.pdf
 
 
 <p>
-Add a border of 50px at the top:
+Add a border of 50px at the top (margins are:  left, top, right, bottom):
 </p>
 <pre class="wiki">
-convert -density 300x300 -bordercolor White -gravity south -extent  `pdfinfo in.pdf  |grep "Page size"|awk '{print $3""$4""($5+50)}'`  in.pdf out.pdf
+ pdfcrop --margins '0 50 0 0' in.pdf out.pdf 
 </pre>
 
 <p>
