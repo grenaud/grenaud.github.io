@@ -298,10 +298,11 @@ for var in 1 2 3 10; do echo $var; done
 </pre>
 
 <p>
-Bash: floating point calculations
+Bash: floating point calculations, assign to valuable
 </p>
 <pre class="wiki">
-echo "10/3"|bc -l
+  echo "10/3"|bc -l
+  varbash=$( expr $var/3 |bc -l    ) 
 </pre>
 
 
