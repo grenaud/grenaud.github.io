@@ -338,6 +338,13 @@ Replace spaces in filenames by underscores:
 for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
 </pre>
 
+<p>
+Replace slashes in sed and place in variable:
+</p>
+<pre class="wiki">
+ j=${i//\//\\/} 
+</pre>
+
     
 
 	
