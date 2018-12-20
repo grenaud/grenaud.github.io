@@ -28,6 +28,16 @@ grep for tabs:
   grep -P "\t"
 </pre>
 
+
+<p>
+xargs in the middle:
+</p>
+<pre class="wiki">
+echo 192.168.1. | xargs -I{} grep {} *.txt
+</pre>
+
+
+
 <p>
 To add a single value absent from a R array: 
 </p>
