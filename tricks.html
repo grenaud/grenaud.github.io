@@ -21,6 +21,9 @@ merge pdfs into a single page:
 </pre>
 
 
+
+
+
 <p>
 grep for tabs:
 </p>
@@ -216,6 +219,25 @@ add a black border about an image:
 </p>
 <pre class="wiki">convert in.pdf -bordercolor black -border 3 out.pdf 
 </pre>
+<p>or:</p>
+<pre class="wiki">
+convert -density 300x300 in.pdf -bordercolor white -border 100x100 in_temp.pdf
+convert -density 300x300 in_temp.pdf  -bordercolor black -border 30x30 out.pdf
+</pre>
+
+
+
+<p>resize image:</p>
+<pre class="wiki">
+convert -density 300x300 -resize 50% in.pdf out.pdf
+</pre>
+
+
+<p>overlay image (input1.pdf,input2.pdf), adjust geomtry:</p>
+<pre class="wiki">
+convert -density 300x300 input1.pdf input2.pdf -geometry +1850+250 -composite output.pdf
+</pre>
+
 
 <p>
 convert pdf to image 300dpi:
