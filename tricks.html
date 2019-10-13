@@ -267,6 +267,29 @@ Add a border of 50px at the top (margins are:  left, top, right, bottom):
  pdfcrop --margins '0 50 0 0' in.pdf out.pdf 
 </pre>
 
+
+<p>
+Remove a border of 10px from the top, left, right and bottom.
+</p>
+<pre class="wiki">
+  convert  in.gif                 -chop  0x10  chop_top.gif
+  convert  in.gif                 -chop 10x0   chop_left.gif
+  convert  in.gif -gravity East   -chop 10x0   chop_right.gif
+  convert  in.gif -gravity South  -chop  0x10  chop_bottom.gif
+</pre>
+<p>
+
+<p>
+Add a border of 10px from the top, left, right and bottom.
+</p>
+<pre class="wiki">
+  convert  in.gif -background white                   -splice 0x10  splice_top.gif
+  convert  in.gif -background blue  -gravity south    -splice 0x10  splice_bottom.gif
+  convert  in.gif -background blue                    -splice 10x0  splice_left.gif
+  convert  in.gif -background blue  -gravity east     -splice 10x0  splice_right.gif
+</pre>
+
+ 
 <p>
 convert pdf to compressed tiff:
 </p>
