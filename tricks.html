@@ -416,8 +416,13 @@ git branch
   git checkout [name branch]
 </pre>
 
-    
 
+<p>
+transform mkv to mp4:
+</p>
+<pre class="wiki">
+ffmpeg -i input.mkv -codec copy -c:a aac -movflags +faststart  output.mp4
+</pre>
 	
   </body>
 
