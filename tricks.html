@@ -250,7 +250,11 @@ put label on figure:
 </p>
 <pre class="wiki">
 cpdf  -add-text "A)"  -topleft 13   -font "Helvetica" -font-size 14 in.pdf -o out.pdf
-  composite -background none  -geometry +10+10 -size 80 -density 300x300   label:'A)' figurein.pdf figureout.pdf
+<pre>
+
+This does not keep the figures as vector PDFs
+<pre class="wiki">
+composite -background none  -geometry +10+10 -size 80 -density 300x300   label:'A)' figurein.pdf figureout.pdf
 composite -background none -geometry +1400+0 -size 80 -density 300x300   label:'B)' figurein.pdf  figureout.pdf
 </pre>
 
