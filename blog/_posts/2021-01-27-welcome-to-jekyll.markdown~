@@ -1,0 +1,55 @@
+---
+layout: post
+title:  "How to create a virtual background in Ubuntu for Discord etc"
+date:   2021-01-15 21:59:54 +0100
+categories: discord
+---
+You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+
+To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+
+Jekyll also offers powerful support for code snippets:
+
+{% highlight bash %}
+sudo add-apt-repository ppa:obsproject/obs-studio
+sudo apt install ffmpeg
+sudo apt update
+
+cd ~/Downloads/
+git clone https://github.com/umlaeute/v4l2loopback.git
+make
+sudo make install
+sudo depmod -a
+sudo modprobe v4l2loopback
+{% endhighlight %}
+
+{% highlight bash %}
+
+sudo apt install qtbase5-dev
+sudo apt install libobs-dev
+
+cd ~/Downloads/
+git clone --recursive https://github.com/obsproject/obs-studio.git
+git clone https://github.com/AndyHee/obs-v4l2sink.git
+
+cd obs-v4l2sink
+mkdir build && cd build
+
+
+OBS_STUDIO_PROJECT_ROOT=$HOME/Download/obs-studio
+OBS_V4L2SINK_PROJECT_ROOT=$HOME/Download/obs-v4l2sink
+cmake -DLIBOBS_INCLUDE_DIR="$OBS_STUDIO_PROJECT_ROOT/libobs" -DCMAKE_INSTALL_PREFIX=/usr $OBS_V4L2SINK_PROJECT_ROOT
+{% endhighlight %}
+
+
+{% highlight bash %}
+sudo apt install obs-studio
+obs
+ Tools > V4L2 Video Output.
+Path to V4L2 Device. In my case, this is /dev/video2.
+
+in sources, add Video Capture.
+click Filters,
+add chroma key,
+play with sensitivity until it works.
+{% endhighlight %}
