@@ -15,5 +15,8 @@ url: "http://yourdomain.com" # the base hostname & protocol for your site
 twitter_username: gabrielylr
 github_username:  grenaud
 
+load_paths:
+ - _sass
+  
 # Build settings
 markdown: kramdown
