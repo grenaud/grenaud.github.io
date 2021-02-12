@@ -22,5 +22,3 @@ load_paths:
 markdown: kramdown
 
 
-sass:
-  sass_dir: blog/_sass/
