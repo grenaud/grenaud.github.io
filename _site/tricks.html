@@ -1,0 +1,448 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <body>
+
+      <a href="perl.html">Perl</a>
+      <a href="bash.html">Bash</a>
+      
+      <p>
+merge pdf:
+</p>
+<pre class="wiki">pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
+</pre>
+
+<p>
+split pdf:
+</p>
+<pre class="wiki">pdftk  in.pdf  burst  output out_%02d.pdf
+</pre>
+
+<p>
+merge pdfs into a single page:
+</p>
+<pre class="wiki">montage -density 300x300 -geometry 1200x900 input_0*pdf output.pdf 
+</pre>
+
+
+
+
+
+<p>
+grep for tabs:
+</p>
+<pre class="wiki">
+  grep -P "\t"
+</pre>
+
+
+<p>
+xargs in the middle:
+</p>
+<pre class="wiki">
+echo 192.168.1. | xargs -I{} grep {} *.txt
+</pre>
+
+
+
+<p>
+To add a single value absent from a R array: 
+</p>
+<pre class="wiki">levels(x[whaterver])&lt;-c(levels(x[whaterver]),newvalue)
+x[whaterver,4]=newvalue
+</pre>
+
+<p>
+Multiple sort:
+</p>
+<pre class="wiki">sort  -k10,10 -k1nr,1 
+</pre>
+
+<p>
+sort on tabs:
+</p>
+<pre class="wiki">sort  -t$'\t'  -k1nr,1 
+</pre>
+
+
+<p>
+Qual scores:
+</p>
+<pre class="wiki">| cut -f 11 |tr -d "\n"| od -t d1 |awk '{for(i=2;i&lt;=NF;i++){printf "%s ",($i-33);} printf "\n";}'
+</pre>
+
+
+<p>
+Average per bin:
+</p>
+<pre class="wiki">   |awk '{print int($1/binsize)"\t"$2}' |sort -n  |avrgPerBin.pl
+</pre>
+
+<p>
+Screen
+</p>
+<pre class="wiki">screen -h 30000 -S test 
+screen -x test 
+screen -ls
+</pre>
+
+
+<p>
+scroll:
+</p>
+<pre class="wiki">ctrl-a [
+</pre>
+
+
+<p>
+shift round:
+</p>
+<pre class="wiki">|awk '{printf("%d %d\n",($1*10+1000),($2*10+1000))}'
+</pre>
+
+<p>
+find with size:
+</p>
+<pre class="wiki">find -exec ls --size {} \;
+</pre>
+
+<p>
+Webserver:
+</p>
+<pre class="wiki">ssh gabriel_renaud@bioinf
+directory:/var/www/bioinf/htdocs/
+</pre>
+
+<p>
+Iterate over tiles hiseq:
+</p>
+<pre class="wiki">for i in {1..8}; 
+do
+for j in {{1101..1116},{1201..1216},{2101..2116},{2201..2216}};
+do
+/mnt/solexa/bin/pipeline3.0/estimateControlReadsBCL/estimateControlReadsBCL 96 TTGCCGC "$i" "$j" /mnt/solexa/120509_SN7001204_0137_AC0RMEACXX_PEdi_SS_L9351_1/Data/Intensities/BaseCalls/; 
+done; 
+done
+</pre>
+
+<p>
+Rapid run:
+</p>
+<pre class="wiki">for i in {1..2}; 
+do
+for j in {{1101..1116},{1201..1216},{2101..2116},{2201..2216}};
+do
+/mnt/solexa/bin/pipeline3.0/estimateControlReadsBCL/estimateControlReadsBCL 96 CGATTCG "$i" "$j" /mnt/solexa/120509_SN7001204_0137_AC0RMEACXX_PEdi_SS_L9351_1/Data/Intensities/BaseCalls/; 
+done; 
+done
+</pre>
+
+<p>
+Iterate over tiles ga:
+</p>
+<pre class="wiki">for i in {1..8}; 
+do
+for j in {1..120};
+do
+/mnt/solexa/bin/pipeline3.0/estimateControlReadsBCL/estimateControlReadsBCL 96 TTGCCGC "$i" "$j" /mnt/solexa/120509_SN7001204_0137_AC0RMEACXX_PEdi_SS_L9351_1/Data/Intensities/BaseCalls/; 
+done; 
+done
+</pre>
+
+
+<p>
+List packages:
+</p>
+<pre class="wiki">dpkg -l
+</pre>
+
+<p>
+List files for a given package:
+</p>
+<pre class="wiki">dpkg -L [package]
+</pre>
+
+<p>
+Git commands:
+Initialize the directory:
+</p>
+<pre class="wiki">git init
+git add [files]
+git commit -m 'first commit'
+git remote add origin git@github.com:grenaud/[project].git
+git push -u origin master
+</pre>
+
+
+<p>
+Commiting:
+</p>
+<pre class="wiki">git commit -a -m "Adding stuff"
+git push -u origin master
+</pre>
+
+<p>
+Check if up to date:
+</p>
+<pre class="wiki">git status
+git pull origin master
+</pre><pre class="wiki">git clone https://github.com/grenaud/schmutzi.git
+git fetch origin
+git checkout gh-pages
+</pre>
+
+<p>
+gvfs 
+</p>
+<pre class="wiki">killall gvfs-fuse-daemon
+/usr/lib/gvfs/gvfs-fuse-daemon ~/.gvfs 
+gvfs-mount smb://biofs06/data
+ls /var/run/user/2331/gvfs/smb-share\:server\=biofs06\,share\=data/
+</pre>
+
+<p>
+Useful link for git cmds:
+<a class="ext-link" href="http://scottr.org/presentations/git-in-5-minutes/"><span class="icon">​</span>http://scottr.org/presentations/git-in-5-minutes/</a>
+</p>
+
+
+<p>
+Check error code jobs:
+</p>
+<pre class="wiki">qacct -j [job id]
+</pre>
+
+<p>
+trim white spaces pdf
+</p>
+<pre class="wiki">pdfcrop in.pdf out.pdf 
+</pre>
+
+<p>
+add a black border about an image:
+</p>
+<pre class="wiki">convert in.pdf -bordercolor black -border 3 out.pdf 
+</pre>
+<p>or:</p>
+<pre class="wiki">
+convert -density 300x300 in.pdf -bordercolor white -border 100x100 in_temp.pdf
+convert -density 300x300 in_temp.pdf  -bordercolor black -border 30x30 out.pdf
+</pre>
+
+
+
+<p>resize image:</p>
+<pre class="wiki">
+convert -density 300x300 -resize 50% in.pdf out.pdf
+</pre>
+
+
+<p>overlay image (input1.pdf,input2.pdf), adjust geomtry:</p>
+<pre class="wiki">
+convert -density 300x300 input1.pdf input2.pdf -geometry +1850+250 -composite output.pdf
+</pre>
+
+
+<p>
+convert pdf to image 300dpi:
+</p>
+<pre class="wiki">convert -density 300x300 
+</pre>
+
+<p>
+put label on figure:
+</p>
+<pre class="wiki">
+cpdf  -add-text "A)"  -topleft 13   -font "Helvetica" -font-size 14 in.pdf -o out.pdf
+<pre>
+
+This does not keep the figures as vector PDFs
+<pre class="wiki">
+composite -background none  -geometry +10+10 -size 80 -density 300x300   label:'A)' figurein.pdf figureout.pdf
+composite -background none -geometry +1400+0 -size 80 -density 300x300   label:'B)' figurein.pdf  figureout.pdf
+</pre>
+
+<p>
+Put figures side by side or top to bottom:
+</p>
+<pre class="wiki">convert -density 300x300  figure1.pdf figure2.pdf +append out.pdf
+convert -density 300x300  figure1.pdf figure2.pdf -append out.pdf
+</pre>
+
+
+<p>
+Add a border of 50px at the top (margins are:  left, top, right, bottom):
+</p>
+<pre class="wiki">
+ pdfcrop --margins '0 50 0 0' in.pdf out.pdf 
+</pre>
+
+
+<p>
+Remove a border of 10px from the top, left, right and bottom.
+</p>
+<pre class="wiki">
+  convert  in.gif                 -chop  0x10  chop_top.gif
+  convert  in.gif                 -chop 10x0   chop_left.gif
+  convert  in.gif -gravity East   -chop 10x0   chop_right.gif
+  convert  in.gif -gravity South  -chop  0x10  chop_bottom.gif
+</pre>
+<p>
+
+<p>
+Add a border of 10px from the top, left, right and bottom.
+</p>
+<pre class="wiki">
+  convert  in.gif -background white                   -splice 0x10  splice_top.gif
+  convert  in.gif -background blue  -gravity south    -splice 0x10  splice_bottom.gif
+  convert  in.gif -background blue                    -splice 10x0  splice_left.gif
+  convert  in.gif -background blue  -gravity east     -splice 10x0  splice_right.gif
+</pre>
+
+ 
+<p>
+convert pdf to compressed tiff:
+</p>
+<pre class="wiki">convert -density 300x300  -compress lzw
+</pre>
+
+<p>
+convert pdf to ps:
+</p>
+<pre class="wiki">for i in `ls *pdf`;
+do 
+echo $i;
+convert  ${i:0:-4}.pdf ${i:0:-4}.eps
+done 
+</pre>
+
+
+
+
+<p>
+using OLB:
+On old runs, go from tif to intensities,  put run in /mnt/solexa/ to make sure we have Instruments/
+</p>
+<pre class="wiki">~/OLB-1.6.0/bin/goat_pipeline.py --make /mnt/solexa/100708_SOLEXA-GA02_0006_PEi_SR_DH_MW/
+</pre>
+
+<p>
+view json
+</p>
+<pre class="wiki">cat  131018_M00518_0180_000000000-A4TK9_TM_Fox+Phi_AW17102013_1.json  |jq  .
+</pre>
+
+
+<p>
+remove bounding box on ps files:
+</p>
+<pre class="wiki">ps2eps -B -C &lt; in.eps &gt;  out.eps
+</pre>
+
+<p>
+transpose column unix:
+</p>
+<pre class="wiki">awk 'BEGIN{FS="\t"}{ for (i = 1; i &lt;= NF; i++) f[i] = f[i] " " $i ; if (NF &gt; n) n = NF } END { for (i = 1; i &lt;= n; i++) sub(/^  */, "", f[i]) ; for (i = 1; i &lt;= n; i++) print f[i] }'
+</pre>
+
+
+<p>
+Count Ns in fasta file:
+</p>
+<pre class="wiki">
+cat input.fa  | fasta2oneLine |awk '{printf("%s\t",$1); Ns=0; for(i=0;i<length($2);i++){if(toupper(substr($2,i,1))=="N"){Ns+=1;}} print Ns"\t"100*(Ns/length($2));}'
+</pre>
+
+
+<p>
+Bash: If then else file exists
+</p>
+<pre class="wiki">
+if [ -e $i ]; then echo "YES "$i; else echo "NOT "$i; fi;
+</pre>
+
+<p>
+Bash: loop over predefined values
+</p>
+<pre class="wiki">
+for var in 1 2 3 10; do echo $var; done
+</pre>
+
+<p>
+Bash: floating point calculations, assign to valuable
+</p>
+<pre class="wiki">
+  echo "10/3"|bc -l
+  varbash=$( expr $var/3 |bc -l    ) 
+</pre>
+
+
+<p>
+Add bash variables to awk:
+</p>
+<pre class="wiki">root="/webroot"
+echo | awk -v r=$root '{ print "shell root value - " r}'
+</pre>
+
+	    
+<p>
+Make awk print a single quote:
+</p>
+<pre class="wiki">root="/webroot"
+echo |awk '{print "\x27"}'
+</pre>
+
+
+
+<p>
+Check process on port:
+</p>
+<pre class="wiki">lsof -i tcp:8088
+</pre>
+
+    
+
+<p>
+Replace spaces in filenames by underscores:
+</p>
+<pre class="wiki">
+for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
+</pre>
+
+<p>
+Replace slashes in sed and place in variable:
+</p>
+<pre class="wiki">
+ j=${i//\//\\/} 
+</pre>
+
+<p>
+git branch
+</p>
+<pre class="wiki">
+  git branch [name branch]
+  git checkout [name branch]
+  git commit -a -m "message"
+  git push origin [name branch]
+</pre>
+
+
+<p>
+transform mkv to mp4:
+</p>
+<pre class="wiki">
+ffmpeg -i input.mkv -codec copy -c:a aac -movflags +faststart  output.mp4
+</pre>
+
+<p>
+Git cheatsheet
+</p>
+<pre class="wiki">
+git checkout -b your-new-branch
+git add <files>
+git commit -m <message>
+</pre>
+
+  </body>
+
+</html>

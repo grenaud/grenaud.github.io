@@ -1,0 +1,43 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <body>
+<p>
+Normal array:
+</p>
+<pre class="wiki">
+  my @mynormarray = ('val1', 'val2', 'val3');
+  $refarray = \@mynormarray;
+  print $mynormarray[0]."\n";
+</pre>
+
+Anonymous array:
+</p>
+<pre class="wiki">
+  my $myanonarray = ['val1', 'val2', 'val3'];
+  print $myanonarray->[0]."\n";
+</pre>
+
+
+
+
+<p>
+Normal hash:
+</p>
+<pre class="wiki">
+  my %mynormhash = ('key1'=>'val1', 'key2'=>'val2', 'key3'=>'val3');
+  $refhash = \%mynormhash;
+  print $mynormhash['key1']."\n";
+</pre>
+<p>
+
+  Anonymous hash:
+</p>
+<pre class="wiki">
+  my %myanonhash = {'key1'=>'val1', 'key2'=>'val2', 'key3'=>'val3'};
+  print $myanonhash->['key1']."\n";
+</pre>
+
+  </body>
+
+</html>
