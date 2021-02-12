@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Your awesome title</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    <title>Gabriel Renaud&#39;s blog</title>
+    <description>Different musings about bioinformatics, coding, UNIX, travel and sustainability 
 </description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 12 Feb 2021 15:36:36 +0100</pubDate>
-    <lastBuildDate>Fri, 12 Feb 2021 15:36:36 +0100</lastBuildDate>
+    <link>https://grenaud.github.io/blog/</link>
+    <atom:link href="https://grenaud.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 12 Feb 2021 15:44:48 +0100</pubDate>
+    <lastBuildDate>Fri, 12 Feb 2021 15:44:48 +0100</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -28,13 +28,75 @@
 
 </description>
         <pubDate>Fri, 12 Feb 2021 15:36:02 +0100</pubDate>
-        <link>http://yourdomain.com/jekyll/update/2021/02/12/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2021/02/12/welcome-to-jekyll.html</guid>
+        <link>https://grenaud.github.io/blog/jekyll/update/2021/02/12/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">https://grenaud.github.io/blog/jekyll/update/2021/02/12/welcome-to-jekyll.html</guid>
         
         
         <category>jekyll</category>
         
         <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>How to create a virtual background in Ubuntu for Discord etc</title>
+        <description>&lt;p&gt;Due to the COVID19 situation, I recently had to teach a class via Discord. My new “office” is merely a desk in a kitchen, nothing glamorous. While I was teaching, I wanted to give my family the privacy to come and go so I decided to set up a virtual screen. However, Discord is not like Zoom, you cannot simply set up a virtual screen.&lt;/p&gt;
+
+&lt;p&gt;I am running Ubuntu and needed a way to hide my background in Discord. You after reading a few blog posts, I decided to share what I learned.&lt;/p&gt;
+
+&lt;p&gt;The first step is to procure a green screen. I purchased one relatively that was cheap on Alibaba. The second thing this to set up a virtual camera in Ubuntu. The trick is to capture the camera with the green screen and create a virtual camera that casts your image with the virtual background. Believe me, it is less painful than it sounds. The triggers to use two pieces of software, one that will create a virtual camera (v4l2loopback) and OBS studio which will take your camera, replace the green screen with a virtual background and broadcast to the virtual camera.&lt;/p&gt;
+
+&lt;p&gt;First, you need to install some software:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;add-apt-repository ppa:obsproject/obs-studio
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install ffmpeg
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update
+
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/Downloads/
+git clone https://github.com/umlaeute/v4l2loopback.git
+make
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;make install
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;depmod &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;modprobe v4l2loopback&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The last command installs the virtual camera. This command may fail. This can be the case if you’re not logged in as a user with sudo rights or if you have secure boot.&lt;/p&gt;
+
+&lt;p&gt;We need a few modules to interface between OBS studio and v4l2loopback:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install qtbase5-dev
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install libobs-dev
+
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/Downloads/
+git clone &lt;span class=&quot;nt&quot;&gt;--recursive&lt;/span&gt; https://github.com/obsproject/obs-studio.git
+git clone https://github.com/AndyHee/obs-v4l2sink.git
+
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;obs-v4l2sink
+mkdir build &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;build
+
+&lt;span class=&quot;nv&quot;&gt;OBS_STUDIO_PROJECT_ROOT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/Download/obs-studio
+&lt;span class=&quot;nv&quot;&gt;OBS_V4L2SINK_PROJECT_ROOT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/Download/obs-v4l2sink
+cmake &lt;span class=&quot;nt&quot;&gt;-DLIBOBS_INCLUDE_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$OBS_STUDIO_PROJECT_ROOT&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/libobs&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-DCMAKE_INSTALL_PREFIX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr &lt;span class=&quot;nv&quot;&gt;$OBS_V4L2SINK_PROJECT_ROOT&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Finally, we will install OBS studio:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install obs-studio
+obs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Then, test the virtual camera: go to “Tools” and “V4L2 Video Output”.
+Then you need to set up the path to V4L2 Device. In my case, this is /dev/video2.&lt;/p&gt;
+
+&lt;p&gt;In sources, add Video Capture (this is your webcam). Also, add “Image” as a source and use it to set up the virtual image that you want.&lt;/p&gt;
+
+&lt;p&gt;Then we need to modify our webcam stream using “filters”. We will set up the filters by selecting Video Capture and clicking “Filters”. Three filters are important 1) “chroma key” is the actual filter that replaces the green for a virtual background, play with similarity until it works and we can still see your face. 2) “color correction” can correct minor color problems  3) “Crop/pad” is very useful if your green screen does not cover a patch of ceiling or something.&lt;/p&gt;
+
+&lt;p&gt;And there you go you have a virtual camera like those professional gamers!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 15 Jan 2021 21:59:54 +0100</pubDate>
+        <link>https://grenaud.github.io/blog/discord/2021/01/15/virtual-background-discord.html</link>
+        <guid isPermaLink="true">https://grenaud.github.io/blog/discord/2021/01/15/virtual-background-discord.html</guid>
+        
+        
+        <category>discord</category>
         
       </item>
     
