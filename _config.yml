@@ -10,7 +10,7 @@ title: Gabriel Renaud's blog
 email: gabriel.reno@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Different musings about bioinformatics, coding, UNIX, travel and sustainability 
-baseurl: "/blog" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://grenaud.github.io" # the base hostname & protocol for your site
 twitter_username: gabrielylr
 github_username:  grenaud
