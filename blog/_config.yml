@@ -16,7 +16,7 @@ twitter_username: gabrielylr
 github_username:  grenaud
 
 load_paths:
- - _sass
+ - blog/_sass
   
 # Build settings
 markdown: kramdown
