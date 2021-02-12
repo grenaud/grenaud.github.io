@@ -6,8 +6,8 @@
 </description>
     <link>https://grenaud.github.io/</link>
     <atom:link href="https://grenaud.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 12 Feb 2021 15:57:15 +0100</pubDate>
-    <lastBuildDate>Fri, 12 Feb 2021 15:57:15 +0100</lastBuildDate>
+    <pubDate>Fri, 12 Feb 2021 16:01:25 +0100</pubDate>
+    <lastBuildDate>Fri, 12 Feb 2021 16:01:25 +0100</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -16,7 +16,7 @@
 
 &lt;p&gt;I am running Ubuntu and needed a way to hide my background in Discord. You after reading a few blog posts, I decided to share what I learned.&lt;/p&gt;
 
-&lt;p&gt;The first step is to procure a green screen. I purchased one relatively that was cheap on Alibaba. The second thing this to set up a virtual camera in Ubuntu. The trick is to capture the camera with the green screen and create a virtual camera that casts your image with the virtual background. Believe me, it is less painful than it sounds. The triggers to use two pieces of software, one that will create a virtual camera (v4l2loopback) and OBS studio which will take your camera, replace the green screen with a virtual background and broadcast to the virtual camera.&lt;/p&gt;
+&lt;p&gt;The first step is to procure a green screen. I purchased a relatively cheap one on Alibaba. The second thing is to set up a virtual camera in Ubuntu. &lt;strong&gt;The trick is to capture the camera with the green screen and create a virtual camera that casts your image with the virtual background.&lt;/strong&gt; Believe me, it is less painful than it sounds. The trick is to use two pieces of software, one that will create a virtual camera (v4l2loopback) and OBS studio which will take your camera, replace the green screen with a virtual background and broadcast to the virtual camera.&lt;/p&gt;
 
 &lt;p&gt;First, you need to install some software:&lt;/p&gt;
 
@@ -59,7 +59,12 @@ Then you need to set up the path to V4L2 Device. In my case, this is /dev/video2
 
 &lt;p&gt;In sources, add Video Capture (this is your webcam). Also, add “Image” as a source and use it to set up the virtual image that you want.&lt;/p&gt;
 
-&lt;p&gt;Then we need to modify our webcam stream using “filters”. We will set up the filters by selecting Video Capture and clicking “Filters”. Three filters are important 1) “chroma key” is the actual filter that replaces the green for a virtual background, play with similarity until it works and we can still see your face. 2) “color correction” can correct minor color problems  3) “Crop/pad” is very useful if your green screen does not cover a patch of ceiling or something.&lt;/p&gt;
+&lt;p&gt;Then we need to modify our webcam stream using “filters”. We will set up the filters by selecting Video Capture and clicking “Filters”. Three filters are important:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;“chroma key” is the actual filter that replaces the green for a virtual background, play with similarity until it works and we can still see your face.&lt;/li&gt;
+  &lt;li&gt;“color correction” can correct minor color problems&lt;/li&gt;
+  &lt;li&gt;“Crop/pad” is very useful if your green screen does not cover a patch of ceiling or something.&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;p&gt;And there you go you have a virtual camera like those professional gamers!&lt;/p&gt;
 </description>
