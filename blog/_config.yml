@@ -20,3 +20,7 @@ load_paths:
   
 # Build settings
 markdown: kramdown
+
+
+sass:
+  sass_dir: blog/_sass/
