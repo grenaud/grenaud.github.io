@@ -8,7 +8,7 @@ Due to the COVID19 situation, I recently had to teach a class via Discord. My ne
 
 I am running Ubuntu and needed a way to hide my background in Discord. You after reading a few blog posts, I decided to share what I learned. 
 
-The first step is to procure a green screen. I purchased a relatively cheap one on Alibaba. The second thing is to set up a virtual camera in Ubuntu. **The trick is to capture the camera with the green screen and create a virtual camera that casts your image with the virtual background.** Believe me, it is less painful than it sounds. The trick is to use two pieces of software, one that will create a virtual camera (v4l2loopback) and OBS studio which will take your camera, replace the green screen with a virtual background and broadcast to the virtual camera.
+The first step is to procure a green screen. I purchased a relatively cheap one on Alibaba. The second thing is to set up a virtual camera in Ubuntu. **The trick is to capture the camera with the green screen and create a virtual camera that casts your image with the virtual background.** Believe me, it is less painful than it sounds. The solution is to use two pieces of software, one that will create a virtual camera (v4l2loopback) and OBS studio which will take your camera, replace the green screen with a virtual background and broadcast to the virtual camera.
 
 First, you need to install some software:
 {% highlight bash %}
@@ -49,14 +49,13 @@ sudo apt install obs-studio
 obs
 {% endhighlight %}
 
-Then, test the virtual camera: go to "Tools" and "V4L2 Video Output".
-Then you need to set up the path to V4L2 Device. In my case, this is /dev/video2.
+Then, test the virtual camera: go to "Tools" and "V4L2 Video Output". You need to set up the path to V4L2 Device. In my case, this is /dev/video2.
 
 In sources, add Video Capture (this is your webcam). Also, add "Image" as a source and use it to set up the virtual image that you want.
 
 Then we need to modify our webcam stream using "filters". We will set up the filters by selecting Video Capture and clicking "Filters". Three filters are important:
-1. "chroma key" is the actual filter that replaces the green for a virtual background, play with similarity until it works and we can still see your face.
+1. "chroma key" is the actual filter that replaces the green for a virtual background, play with similarity until it works and your face is still clearly visible
 2. "color correction" can correct minor color problems
-3. "Crop/pad" is very useful if your green screen does not cover a patch of ceiling or something.
+3. "Crop/pad" is very useful if your green screen does not cover a patch of the ceiling or something.
 
 And there you go you have a virtual camera like those professional gamers!
