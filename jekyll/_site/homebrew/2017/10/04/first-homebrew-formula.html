@@ -1,0 +1,116 @@
+<p>I recently wrote a small note taking cli tool called <a href="https://github.com/danpaz/notem">notem</a>
+and wanted to distribute it via <a href="https://brew.sh/">Homebrew</a>. There is documentation
+on how to do this as well as examples around the internet but I still found it a
+bit tricky to figure out how things all work together.</p>
+
+<h2 id="so-you-want-to-brew">So you want to brew</h2>
+
+<p>Homebrew essentially manages packages in a GitHub repo, and adding a new package
+to the registry comes down to making a git branch and pull request to the repo.</p>
+
+<p>You’ll need:</p>
+<ul>
+  <li>Homebrew installed</li>
+  <li>A binary you want to distribute to folks</li>
+  <li>A public url to that binary</li>
+</ul>
+
+<p>To get a public url I published my program to a new GitHub repo (danpaz/notem).
+Then I gave it a git tag so that GitHub would generate a tagged release
+automatically based on that tag.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span> <span class="o">&amp;&amp;</span> git commit <span class="nt">-m</span> <span class="s2">"Initial commit"</span>
+git tag 0.0.1
+git push <span class="o">&amp;&amp;</span> git push <span class="nt">--tags</span>
+
+</code></pre></div></div>
+
+<p>This results in a tar archive available at https://github.com/danpaz/notem/archive/0.0.1.tar.gz.</p>
+
+<h2 id="formulas">Formulas</h2>
+
+<p>Next I had to write a <a href="https://docs.brew.sh/Formula-Cookbook.html">formula</a>, a
+ruby script that tells Homebrew how to install the package. The
+<code class="highlighter-rouge">brew create &lt;url&gt;</code> command helps out by creating the boilerplate file with
+space for me to define the installation of my binary.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew create https://github.com/danpaz/notem/archive/0.0.1.tar.gz
+</code></pre></div></div>
+
+<p>This created a file for me at /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/notem.rb.
+I deleted the comment blocks and filled in the <code class="highlighter-rouge">install</code> and <code class="highlighter-rouge">test</code> function
+bodies. Here’s what I ended up with:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Notem</span> <span class="o">&lt;</span> <span class="no">Formula</span>
+  <span class="n">desc</span> <span class="s2">"Super simple note taking system"</span>
+  <span class="n">homepage</span> <span class="s2">"https://github.com/danpaz/notem"</span>
+  <span class="n">url</span> <span class="s2">"https://github.com/danpaz/notem/archive/0.0.1.tar.gz"</span>
+  <span class="n">sha256</span> <span class="s2">"e9aa372dcce352938d0042b96a782de4dd319a5aceeae74dbfdac1c5ba1084f8"</span>
+
+  <span class="k">def</span> <span class="nf">install</span>
+    <span class="c1"># Add a symlink to my binary.</span>
+    <span class="n">bin</span><span class="p">.</span><span class="nf">install</span> <span class="s2">"notem"</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="k">do</span>
+    <span class="c1"># Run a command to verify the install. I think this command has to exit with</span>
+    <span class="c1"># status 0 to pass the test.</span>
+    <span class="nb">system</span> <span class="s2">"</span><span class="si">#{</span><span class="n">bin</span><span class="si">}</span><span class="s2">/notem"</span><span class="p">,</span> <span class="s2">"-l"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>For <code class="highlighter-rouge">install</code>, I added <code class="highlighter-rouge">bin.install "notem"</code> to add my binary to the user’s path.
+For <code class="highlighter-rouge">test</code> I added <code class="highlighter-rouge">system "#{bin}/notem", "-l"</code> which verifies my binary runs
+successfully after install.</p>
+
+<p>I found it useful to refer to other packages’ formulas. As mentioned earlier
+these are all on GitHub. For example, <a href="https://github.com/Homebrew/homebrew-core/blob/master/Formula/tmux.rb">here’s the tmux formula</a>.</p>
+
+<p>To verify I ran</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew audit <span class="nt">--new-formula</span> notem
+</code></pre></div></div>
+
+<p>and got this output:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>notem:
+  * GitHub repository not notable enough (&lt;20 forks, &lt;20 watchers and &lt;50 stars)
+  * GitHub repository too new (&lt;30 days old)
+Error: 2 problems in 1 formula
+</code></pre></div></div>
+
+<p>Ouch.</p>
+
+<h2 id="tap-out">Tap out</h2>
+
+<p>So my hot new program isn’t official enough for Homebrew.
+Luckily you can still publish your binary as a <a href="https://docs.brew.sh/brew-tap.html">tap</a>,
+a third-party repository.</p>
+
+<p>Users can then install with an extra command, like this:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew tap danpaz/tap
+brew install notem
+</code></pre></div></div>
+
+<p>That’s good enough for me! Let’s set it up.</p>
+
+<p>I created a new repo called danpaz/homebrew-tap, and this repo will house all of
+my future brew formulas. In that repo I copied over my <code class="highlighter-rouge">notem</code> formula from earlier:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/notem.rb ./Formula
+</code></pre></div></div>
+
+<p>And <code class="highlighter-rouge">git push</code>ed that to GitHub. That’s it! Now <code class="highlighter-rouge">brew tap danpaz/tap</code> will clone
+this repo to the user’s Taps and let them install my package with <code class="highlighter-rouge">brew install notem</code>.</p>
+
+<h2 id="helpful-links">Helpful links</h2>
+
+<ul>
+  <li>https://docs.brew.sh/Formula-Cookbook.html</li>
+  <li>https://speakerdeck.com/defeated/homebrew-publish-your-first-formula</li>
+  <li>http://kylebebak.github.io/post/distribute-program-via-homebrew</li>
+</ul>
+
+<p>-D</p>

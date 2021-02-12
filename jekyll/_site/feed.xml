@@ -1,76 +1,795 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Gabriel&#39;s bioinformatics blog</title>
-    <description>Different musings about bioinformatics, coding and sustainability 
-</description>
-    <link>https://grenaud.github.io/blog/</link>
-    <atom:link href="https://grenaud.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 12 Feb 2021 12:01:11 +0100</pubDate>
-    <lastBuildDate>Fri, 12 Feb 2021 12:01:11 +0100</lastBuildDate>
-    <generator>Jekyll v3.1.6</generator>
-    
-      <item>
-        <title>How to create a virtual background in Ubuntu for Discord etc</title>
-        <description>&lt;p&gt;Due to the COVID19 situation, I recently had to teach a class via Discord. My new “office” is merely a desk in a kitchen, nothing glamorous. While I was teaching, I wanted to give my family the privacy to come and go so I decided to set up a virtual screen. However, Discord is not like Zoom, you cannot simply set up a virtual screen.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://danpaz.me/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://danpaz.me/blog/" rel="alternate" type="text/html" /><updated>2017-11-06T20:09:04-05:00</updated><id>http://danpaz.me/blog/</id><title type="html">danpaz on the internet</title><subtitle>Tech and sometimes-not-tech blog by Daniel Paz-Soldan, also known as danpaz on the web.
+</subtitle><entry><title type="html">Notem: simple notes from the command line</title><link href="http://danpaz.me/blog/projects/2017/11/05/notem.html" rel="alternate" type="text/html" title="Notem: simple notes from the command line" /><published>2017-11-05T23:00:00-05:00</published><updated>2017-11-05T23:00:00-05:00</updated><id>http://danpaz.me/blog/projects/2017/11/05/notem</id><content type="html" xml:base="http://danpaz.me/blog/projects/2017/11/05/notem.html">&lt;p&gt;I thought I’d write a quick post about &lt;a href=&quot;https://github.com/danpaz/notem&quot;&gt;notem&lt;/a&gt; – my first &lt;a href=&quot;https://www.rust-lang.org/&quot;&gt;Rust&lt;/a&gt;
+project! – why I made it, who it’s for, and a little about my experience
+writing it in Rust.&lt;/p&gt;
 
-&lt;p&gt;I am running Ubuntu and needed a way to hide my background in Discord. You after reading a few blog posts, I decided to share what I learned.&lt;/p&gt;
+&lt;h2 id=&quot;why&quot;&gt;Why&lt;/h2&gt;
 
-&lt;p&gt;The first step is to procure a green screen. I purchased one relatively that was cheap on Alibaba. The second thing this to set up a virtual camera in Ubuntu. The trick is to capture the camera with the green screen and create a virtual camera that casts your image with the virtual background. Believe me, it is less painful than it sounds. The triggers to use two pieces of software, one that will create a virtual camera (v4l2loopback) and OBS studio which will take your camera, replace the green screen with a virtual background and broadcast to the virtual camera.&lt;/p&gt;
+&lt;p&gt;I wrote notem to solve a frequent problem in my day-to-day work:
+I almost always forget to take notes! In meetings, pairing sessions, and sprint
+planning, taking notes help me stay focused and to quickly review main takeaways
+after the meeting. And when working on a ticket, taking notes helps me organize
+my thoughts and plan of action before diving into code.&lt;/p&gt;
 
-&lt;p&gt;First, you need to install some software:&lt;/p&gt;
+&lt;p&gt;My goal was to write a tool that would drastically lower the barrier to start
+writing notes like these. I also wanted to have these notes organized in a
+simple way so I can sanely look back through old notes. Prior to notem I would
+open a text editor and save the file to my Desktop, cluttered among the rest of
+my unorganized files.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;add-apt-repository ppa:obsproject/obs-studio
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install ffmpeg
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update
+&lt;p&gt;I wrote &lt;code class=&quot;highlighter-rouge&quot;&gt;notem&lt;/code&gt; as a command line tool that I can run in any terminal window.
+From the command line, I type:&lt;/p&gt;
 
-&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/Downloads/
-git clone https://github.com/umlaeute/v4l2loopback.git
-make
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;make install
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;depmod &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;modprobe v4l2loopback&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;notem sprint planning and review
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;The last command installs the virtual camera. This command may fail. This can be the case if you’re not logged in as a user with sudo rights or if you have secure boot.&lt;/p&gt;
+&lt;p&gt;And by default that  creates a new plain text file in a global folder called
+&lt;code class=&quot;highlighter-rouge&quot;&gt;notes&lt;/code&gt; with today’s date in the filename and the subject of the note, all
+dasherized: &lt;code class=&quot;highlighter-rouge&quot;&gt;2017-11-06-sprint-planning-and-review&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;We need a few modules to interface between OBS studio and v4l2loopback:&lt;/p&gt;
+&lt;p&gt;Due to the naming, all files in the notes directory are sorted by created date.
+This directory quickly fills up, so I added a command to help me find old notes:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install qtbase5-dev
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install libobs-dev
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;notem --search sprint planning
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/Downloads/
-git clone &lt;span class=&quot;nt&quot;&gt;--recursive&lt;/span&gt; https://github.com/obsproject/obs-studio.git
-git clone https://github.com/AndyHee/obs-v4l2sink.git
+&lt;p&gt;which will output the path of the same note I just created. I can quickly open
+up that note with sublime using the &lt;code class=&quot;highlighter-rouge&quot;&gt;subl&lt;/code&gt; command:&lt;/p&gt;
 
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;obs-v4l2sink
-mkdir build &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;build
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;subl &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;notem --search sprint planning&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;span class=&quot;nv&quot;&gt;OBS_STUDIO_PROJECT_ROOT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/Download/obs-studio
-&lt;span class=&quot;nv&quot;&gt;OBS_V4L2SINK_PROJECT_ROOT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/Download/obs-v4l2sink
-cmake &lt;span class=&quot;nt&quot;&gt;-DLIBOBS_INCLUDE_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$OBS_STUDIO_PROJECT_ROOT&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/libobs&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-DCMAKE_INSTALL_PREFIX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr &lt;span class=&quot;nv&quot;&gt;$OBS_V4L2SINK_PROJECT_ROOT&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;whos-it-for&quot;&gt;Who’s it for&lt;/h2&gt;
 
-&lt;p&gt;Finally, we will install OBS studio:&lt;/p&gt;
+&lt;p&gt;I think this tool could be useful for anyone who, like me, struggles to
+incorporate note taking into their day-to-day, but almost always has a terminal
+window open. A new notepad is just a few keystrokes away.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install obs-studio
-obs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;But honestly this tool might only be useful for myself. It solves 80% of my
+problem and fits smoothly into my workflow, so if it’s useful to anyone else
+that’s great 😺.&lt;/p&gt;
 
-&lt;p&gt;Then, test the virtual camera: go to “Tools” and “V4L2 Video Output”.
-Then you need to set up the path to V4L2 Device. In my case, this is /dev/video2.&lt;/p&gt;
+&lt;h2 id=&quot;whats-this-rust-thing&quot;&gt;What’s this Rust thing?&lt;/h2&gt;
 
-&lt;p&gt;In sources, add Video Capture (this is your webcam). Also, add “Image” as a source and use it to set up the virtual image that you want.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.rust-lang.org/&quot;&gt;Rust&lt;/a&gt; is a systems programming language that focuses on performance and
+memory safety. Coming from the web development world where JavaScript is king,
+getting into Rust has been a great learning experience for me. I’ve used the
+opportunity to learn more about concepts that rarely come up when writing in an
+interpreted dynamic language, like memory management, thread safety, type
+checking, compilation.&lt;/p&gt;
 
-&lt;p&gt;Then we need to modify our webcam stream using “filters”. We will set up the filters by selecting Video Capture and clicking “Filters”. Three filters are important 1) “chroma key” is the actual filter that replaces the green for a virtual background, play with similarity until it works and we can still see your face. 2) “color correction” can correct minor color problems  3) “Crop/pad” is very useful if your green screen does not cover a patch of ceiling or something.&lt;/p&gt;
+&lt;p&gt;This was a great starter project for me to learn Rust! The first incarnation of
+notem was a &lt;a href=&quot;https://github.com/danpaz/notem/blob/e811fff4eb65be3ec62573c489b4c50136a97764/notem&quot;&gt;bash script&lt;/a&gt; so I had a clear idea of the functionality I wanted
+to provide and the commands to build. That helped a lot in getting over the
+initial barrier of “what do I write.” In making notem I also got exposed to some
+of the fundamental rust apis like &lt;a href=&quot;https://doc.rust-lang.org/std/env/&quot;&gt;std::env&lt;/a&gt; and &lt;a href=&quot;https://doc.rust-lang.org/std/fs/&quot;&gt;std::fs&lt;/a&gt;.
+While notem is far from idiomatic rust, and it lacks tests and docs, it was a
+good first project to get my feet wet with the language.&lt;/p&gt;
 
-&lt;p&gt;And there you go you have a virtual camera like those professional gamers!&lt;/p&gt;
-</description>
-        <pubDate>Fri, 15 Jan 2021 21:59:54 +0100</pubDate>
-        <link>https://grenaud.github.io/blog/discord/2021/01/15/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">https://grenaud.github.io/blog/discord/2021/01/15/welcome-to-jekyll.html</guid>
-        
-        
-        <category>discord</category>
-        
-      </item>
-    
-  </channel>
-</rss>
+&lt;p&gt;I have a lot more to say on Rust but I’ll save that for a future post.&lt;/p&gt;
+
+&lt;h2 id=&quot;check-it-out&quot;&gt;Check it out&lt;/h2&gt;
+
+&lt;p&gt;If you’re interested in checking out notem you can find the source on GitHub at
+&lt;a href=&quot;https://github.com/danpaz/notem&quot;&gt;https://github.com/danpaz/notem&lt;/a&gt;, and the rust crate is published at crates.io
+&lt;a href=&quot;https://crates.io/crates/notem&quot;&gt;https://crates.io/crates/notem&lt;/a&gt;. Thanks for reading!&lt;/p&gt;
+
+&lt;p&gt;-D&lt;/p&gt;</content><author><name></name></author><summary type="html">I thought I’d write a quick post about notem – my first Rust project! – why I made it, who it’s for, and a little about my experience writing it in Rust.</summary></entry><entry><title type="html">Empire Conf Takeaways Day 2</title><link href="http://danpaz.me/blog/talks/conference/notes/2017/10/14/empireconf-takeaways-day-2.html" rel="alternate" type="text/html" title="Empire Conf Takeaways Day 2" /><published>2017-10-14T00:00:00-04:00</published><updated>2017-10-14T00:00:00-04:00</updated><id>http://danpaz.me/blog/talks/conference/notes/2017/10/14/empireconf-takeaways-day-2</id><content type="html" xml:base="http://danpaz.me/blog/talks/conference/notes/2017/10/14/empireconf-takeaways-day-2.html">&lt;h2 id=&quot;the-rise-of-http2&quot;&gt;The rise of HTTP/2&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Daniela Matos de Carvalho&lt;/em&gt; &lt;a href=&quot;https://twitter.com/sericaia/&quot;&gt;@sericaia&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP 0.9 -&amp;gt; 1.0 -&amp;gt; 1.1. Single connection per request to keep-alive.&lt;/li&gt;
+  &lt;li&gt;Head of Line (HOL) blocking. Requires strict order.&lt;/li&gt;
+  &lt;li&gt;Introduced HTTP/2, fathered by SPDY.
+    &lt;ul&gt;
+      &lt;li&gt;Streams&lt;/li&gt;
+      &lt;li&gt;Resource prioritization (implemented even before HTTP/2)&lt;/li&gt;
+      &lt;li&gt;Header compression&lt;/li&gt;
+      &lt;li&gt;Push&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Try &lt;a href=&quot;https://www.wireshark.org/&quot;&gt;Wireshark&lt;/a&gt; to inspect network activity!&lt;/li&gt;
+  &lt;li&gt;To use HTTP/2 with node: Experimental stage 1, behind feature flag &lt;code class=&quot;highlighter-rouge&quot;&gt;node --expose-http2 index.js&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Check out examples at &lt;a href=&quot;https://github.com/sericaia/http2-examples-empireconf&quot;&gt;https://github.com/sericaia/http2-examples-empireconf&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;“But I use express/hapi!”
+    &lt;ul&gt;
+      &lt;li&gt;Not yet ready but soon it will be similar&lt;/li&gt;
+      &lt;li&gt;Should be in hapi 17.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Use Push.
+    &lt;ul&gt;
+      &lt;li&gt;In server request handler we can pre push assets to http2 stream.&lt;/li&gt;
+      &lt;li&gt;Push css, images, etc.&lt;/li&gt;
+      &lt;li&gt;Then these won’t be requested by the page later.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Browsers won’t let you use HTTP/2 without a real TLS connection.
+    &lt;ul&gt;
+      &lt;li&gt;Test locally without SSL: open chrome with &lt;code class=&quot;highlighter-rouge&quot;&gt;--ignore-certificate-errors&lt;/code&gt; flag :)&lt;/li&gt;
+      &lt;li&gt;But this won’t fully work.&lt;/li&gt;
+      &lt;li&gt;Use &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;credentials:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'include'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt; in service worker request handler.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;a-brief-history-of-prototypes&quot;&gt;A Brief History of Prototypes&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Kat Marchan&lt;/em&gt; &lt;a href=&quot;https://twitter.com/maybekatz/&quot;&gt;@maybekatz&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Prototype-Based Object-Oriented Programming: What is it? What is the history? Why did we do this?
+    &lt;ul&gt;
+      &lt;li&gt;In class based languages, overriding behavior requires adding a new class.&lt;/li&gt;
+      &lt;li&gt;In prototype based languages, you can clone to reuse parent’s code. Known as &lt;em&gt;delegation&lt;/em&gt;.&lt;/li&gt;
+      &lt;li&gt;Even JS class syntax papers over prototypes.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The very beginning: &lt;strong&gt;Director&lt;/strong&gt; programming language (1976). The “Actor Model.”
+    &lt;ul&gt;
+      &lt;li&gt;Used message passing with &lt;code class=&quot;highlighter-rouge&quot;&gt;ask&lt;/code&gt;, optional asynchronous event loop, delegation based inheritance.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Object(Lisp)&lt;/strong&gt; (1985).
+    &lt;ul&gt;
+      &lt;li&gt;Used for lisp machine UI. Similar to 2017 JS.&lt;/li&gt;
+      &lt;li&gt;This is validating to the semantics we&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Self&lt;/strong&gt; (1987).
+    &lt;ul&gt;
+      &lt;li&gt;Built on top of class-based Smalltalk language but with prototypes.&lt;/li&gt;
+      &lt;li&gt;Ease of use of a dynamic system but speed to match lower level languages.&lt;/li&gt;
+      &lt;li&gt;Biggest influence on modern JS.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Lambdamoo&lt;/strong&gt; (1990).
+    &lt;ul&gt;
+      &lt;li&gt;Prototypes for play.&lt;/li&gt;
+      &lt;li&gt;Text-based MUD (multi user dungeon) - online multiplayer text based games.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Lua&lt;/strong&gt;  (1993).
+    &lt;ul&gt;
+      &lt;li&gt;Metatables is like objects&lt;/li&gt;
+      &lt;li&gt;Small language used for gaming.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;&lt;strong&gt;JavaScript&lt;/strong&gt;&lt;/em&gt; (1995).
+    &lt;ul&gt;
+      &lt;li&gt;Famously put together in 10 days.&lt;/li&gt;
+      &lt;li&gt;Most widely used prototype language in the world 🌏.&lt;/li&gt;
+      &lt;li&gt;Prototypes were a great fit for the DOM.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The Future of JS.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;More interactive dev&lt;/strong&gt;: hope the need for webpack/babel starts to disappear.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Web components&lt;/strong&gt; are natural evolution of the platform.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Keep JS easy&lt;/strong&gt;: simple easy to learn languages drive adoption. Immediate results are delightful.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;why-static-typing-matters-or-how-to-solve-all-your-runtime-errors-with-this-one-neat-trick&quot;&gt;Why Static Typing Matters (or How to Solve All Your Runtime Errors With This One Neat Trick)&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Eli Perkins&lt;/em&gt; &lt;a href=&quot;https://twitter.com/_eliperkins/&quot;&gt;@_eliperkins&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Static typing -&amp;gt; types are known at compile time.&lt;/li&gt;
+  &lt;li&gt;Dynamic -&amp;gt; type checking at run time.&lt;/li&gt;
+  &lt;li&gt;Types are discovered by &lt;em&gt;annotation&lt;/em&gt; or &lt;em&gt;inference&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;In JS: Flow and Typescript. Roughly equivalent tools.&lt;/li&gt;
+  &lt;li&gt;Avoid whole classes of errors before our programs run.
+    &lt;ul&gt;
+      &lt;li&gt;Type mismatches.&lt;/li&gt;
+      &lt;li&gt;Unexpected &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;s.&lt;/li&gt;
+      &lt;li&gt;Typos.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Why do we care?
+    &lt;ul&gt;
+      &lt;li&gt;Bugs are suprises: static types reduce surprises.&lt;/li&gt;
+      &lt;li&gt;Errors at run time: users pay the cost. At compile time: developers pay the cost.&lt;/li&gt;
+      &lt;li&gt;In Objective-C this leads to app crashes.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Swift - strong static typed language that interops with Obj C.
+    &lt;ul&gt;
+      &lt;li&gt;At Venmo: introduced static typing slowly, starting at the network layer.&lt;/li&gt;
+      &lt;li&gt;Added high confidence in a critical piece of the stack.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;What’s next for static typing in JS?
+    &lt;ul&gt;
+      &lt;li&gt;Elm
+        &lt;ul&gt;
+          &lt;li&gt;Generates JS with no run time exceptions.&lt;/li&gt;
+          &lt;li&gt;Understands your API surface, tells you what semver version bump you need.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;ReasonML
+        &lt;ul&gt;
+          &lt;li&gt;Syntax and toolchain for OCaml that compiles to JS.&lt;/li&gt;
+          &lt;li&gt;Pattern matching over union types is cool.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Check out Dan Grossman, Programming Languages course on coursera: &lt;a href=&quot;https://www.coursera.org/learn/programming-languages&quot;&gt;https://www.coursera.org/learn/programming-languages&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;bad-performance-is-the-root-of-all-evil&quot;&gt;Bad Performance is the Root of All Evil&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Dave Thompson&lt;/em&gt; &lt;a href=&quot;https://twitter.com/limscoder/&quot;&gt;@limscoder&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Don’t optimize before you measure.&lt;/li&gt;
+  &lt;li&gt;Not measuring performance is the root of all evil .&lt;/li&gt;
+  &lt;li&gt;RAIL model (or, LIAR model)
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;L&lt;/strong&gt;oad - initial side load - 1000ms.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;I&lt;/strong&gt;dle - perform background tasks.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;A&lt;/strong&gt;nimation - javascript, render, paint - 16ms or 60fps for no jank.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;R&lt;/strong&gt;esponse - delays in interactions - 100ms (should display indicator when &amp;gt; 500ms).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Use “Performance” tab in chrome dev tools.&lt;/li&gt;
+  &lt;li&gt;Simple rules to follow:
+    &lt;ul&gt;
+      &lt;li&gt;Optimize network.
+        &lt;ul&gt;
+          &lt;li&gt;Reduce file size. img &lt;code class=&quot;highlighter-rouge&quot;&gt;srcset&lt;/code&gt; attribute. Configure cache headers. Use http2. CDN.&lt;/li&gt;
+          &lt;li&gt;Sequential code -&amp;gt; parallel code -&amp;gt; lazy code.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Optimize interaction response.
+        &lt;ul&gt;
+          &lt;li&gt;Make use of &lt;em&gt;idle time&lt;/em&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;requestIdleCallback&lt;/code&gt; fallback to &lt;code class=&quot;highlighter-rouge&quot;&gt;requestAnimationFrame&lt;/code&gt;.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Long frames.
+        &lt;ul&gt;
+          &lt;li&gt;Use “Bottom Up” in devtools to identify slow JS functions.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Simulate slowness with network and cpu throttling.&lt;/li&gt;
+  &lt;li&gt;Understand your webpack and babel configs!&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/GoogleChrome/lighthouse&quot;&gt;Lighthouse&lt;/a&gt; audit to help identify and fix common problems.&lt;/li&gt;
+  &lt;li&gt;Slides: &lt;a href=&quot;https://github.com/limscoder/react-present&quot;&gt;https://github.com/limscoder/react-present&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;programming-101-learn-english&quot;&gt;Programming 101: Learn English&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Vanessa Yuen&lt;/em&gt; &lt;a href=&quot;https://twitter.com/vanessayuenn/&quot;&gt;@vanessayuenn&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;All popular programming languages are written in English.&lt;/li&gt;
+  &lt;li&gt;Today to be a programmer you &lt;em&gt;have to learn English&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Hurdles:
+    &lt;ul&gt;
+      &lt;li&gt;Memorizing a bunch of words. What if “function” means nothing to you? Reserved words.&lt;/li&gt;
+      &lt;li&gt;Coding in a foreign language is basically like coding in emoji &lt;a href=&quot;http://www.emojicode.org&quot;&gt;http://www.emojicode.org&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Asking questions when you’re lost is even harder in a foreign language. Imposter syndrome ++&lt;/li&gt;
+      &lt;li&gt;Stack Overflow explicitly states: “Questions written in non-English should be closed”&lt;/li&gt;
+      &lt;li&gt;You have to convince people you can communicate. Fluency != communication skills.&lt;/li&gt;
+      &lt;li&gt;Half translated, maybe outdated docs.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;How to do better: Make learning accessible regardless of language.
+    &lt;ul&gt;
+      &lt;li&gt;Node - 50% learned Node in their non-native language.&lt;/li&gt;
+      &lt;li&gt;Good documentation translation is a bridge between all users.&lt;/li&gt;
+      &lt;li&gt;Great example: Angular Chinese docs.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Empathy&lt;/strong&gt; &amp;amp; patience.&lt;/li&gt;
+      &lt;li&gt;Remember your story is not their story.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;We have a responsibility to level out the playing field. Diversity in language benefits all.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;architecture-as-text-setup-aws-lambda-api-gateway-sns-and-dynamodb-on-easy-mode&quot;&gt;Architecture as Text: Setup AWS Lambda, API Gateway, SNS, and DynamoDB on Easy Mode&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Angelina Fabbro&lt;/em&gt; &lt;a href=&quot;https://twitter.com/hopefulcyborg/&quot;&gt;@hopefulcyborg&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Leveraging new tools in AWS: Lambda, S3, DynamoDB.&lt;/li&gt;
+  &lt;li&gt;Not a lot of tools for configuration and deployment.&lt;/li&gt;
+  &lt;li&gt;AWS console / cli is not a great experience. “Kitchen sink UI.”&lt;/li&gt;
+  &lt;li&gt;Serverless == functions as a service. Amazon abstracts the server altogether.&lt;/li&gt;
+  &lt;li&gt;Many parts needed to do anything meaningful:
+    &lt;ul&gt;
+      &lt;li&gt;Route 53 (DNS)&lt;/li&gt;
+      &lt;li&gt;API Gateway (routing)&lt;/li&gt;
+      &lt;li&gt;Lambda (your code)&lt;/li&gt;
+      &lt;li&gt;DynamoDB (optional sessions)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Existing infrastructure-as-code tools (terraform, serverless, AWS SAM)
+    &lt;ul&gt;
+      &lt;li&gt;Describing every resource is verbose and time consuming.&lt;/li&gt;
+      &lt;li&gt;Deep proprietary knowledge required.&lt;/li&gt;
+      &lt;li&gt;Difficult to read JSON, no comments.&lt;/li&gt;
+      &lt;li&gt;Adds cognitive overhead.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Move to &lt;strong&gt;architecture as text&lt;/strong&gt;, plaintext manifest file
+    &lt;ul&gt;
+      &lt;li&gt;Minimal &lt;code class=&quot;highlighter-rouge&quot;&gt;.arc&lt;/code&gt; file.&lt;/li&gt;
+      &lt;li&gt;Describes how to provision all of the parts.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm i @architect/workflows --save&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Deploys are fast and boring.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arc.codes&quot;&gt;https://arc.codes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;-D&lt;/p&gt;</content><author><name></name></author><summary type="html">The rise of HTTP/2</summary></entry><entry><title type="html">Empire Conf Takeaways Day 1</title><link href="http://danpaz.me/blog/talks/conference/notes/2017/10/12/empireconf-takeaways-day-1.html" rel="alternate" type="text/html" title="Empire Conf Takeaways Day 1" /><published>2017-10-12T00:00:00-04:00</published><updated>2017-10-12T00:00:00-04:00</updated><id>http://danpaz.me/blog/talks/conference/notes/2017/10/12/empireconf-takeaways-day-1</id><content type="html" xml:base="http://danpaz.me/blog/talks/conference/notes/2017/10/12/empireconf-takeaways-day-1.html">&lt;h2 id=&quot;bauhaus-in-the-browser&quot;&gt;Bauhaus in the Browser&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Justin McDowell&lt;/em&gt; &lt;a href=&quot;https://twitter.com/revoltpuppy/&quot;&gt;@revoltpuppy&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Inspired by Bauhaus movement in 1920s Germany.&lt;/li&gt;
+  &lt;li&gt;Recent browser specs give us the tools to apply the principles of bauhaus on the web.&lt;/li&gt;
+  &lt;li&gt;Viewport units - &lt;code class=&quot;highlighter-rouge&quot;&gt;vh&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;vw&lt;/code&gt;, consistent text size and placement for any viewport.
+    &lt;ul&gt;
+      &lt;li&gt;Check out &lt;a href=&quot;https://www.youtube.com/watch?v=XanhwddQ-PM&quot;&gt;Stop thinking in Pixels by Keith Grant&lt;/a&gt;.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Perspective transforms - &lt;code class=&quot;highlighter-rouge&quot;&gt;perspective&lt;/code&gt; - modify distance from 3D plane.&lt;/li&gt;
+  &lt;li&gt;Grid - flexible layouts using &lt;code class=&quot;highlighter-rouge&quot;&gt;grid&lt;/code&gt; - keep proportional with viewport units.
+    &lt;ul&gt;
+      &lt;li&gt;Check out &lt;a href=&quot;https://gridbyexample.com/&quot;&gt;Grid by Example by Rachel Andrew&lt;/a&gt;.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Shapes - &lt;code class=&quot;highlighter-rouge&quot;&gt;shape-outside&lt;/code&gt; - flow text around arbitrary shapes.&lt;/li&gt;
+  &lt;li&gt;Blending modes - &lt;code class=&quot;highlighter-rouge&quot;&gt;mix-blend-mode&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;background-blend-mode&lt;/code&gt;, - blend overlapping layers together.
+    &lt;ul&gt;
+      &lt;li&gt;Check out &lt;a href=&quot;https://vimeo.com/183578252&quot;&gt;Practical Blend Modes by Una Kravets&lt;/a&gt;.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;developing-for-localization&quot;&gt;Developing for Localization&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Katie Kurkoski&lt;/em&gt; &lt;a href=&quot;https://twitter.com/KatieK2/&quot;&gt;@KatieK2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://katiek2.github.io/localization-links-2017&quot;&gt;https://katiek2.github.io/localization-links-2017&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Localized content / dynamic content reveals unexpected edge cases in layout and text changes.&lt;/li&gt;
+  &lt;li&gt;These are CSS techniques to allow flexible layout to handle different languages and user generated content.&lt;/li&gt;
+  &lt;li&gt;Different languages take up a different amount of space so don’t assume size of text boxes.
+    &lt;ul&gt;
+      &lt;li&gt;Spanish and German tend to be longer than English.&lt;/li&gt;
+      &lt;li&gt;Japanese and Hebrew tend to be much shorter.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Don’t put copy in images. Cannot be translated by the browser – use HTML instead.&lt;/li&gt;
+  &lt;li&gt;Avoid &lt;code class=&quot;highlighter-rouge&quot;&gt;text-transform&lt;/code&gt; because it changes content in unexpected ways.
+    &lt;ul&gt;
+      &lt;li&gt;Uppercase German &lt;code class=&quot;highlighter-rouge&quot;&gt;SS&lt;/code&gt;, Dutch &lt;code class=&quot;highlighter-rouge&quot;&gt;IJ&lt;/code&gt;, are handled differently by different browsers.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Quote marks in different languages &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;&lt;/code&gt;. Use css pseudo class, e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;q:lang(de)&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Tricky side padding and width on headlines with unpredictable length.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;orphans&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;widows&lt;/code&gt; in CSS to declare minimum number of hanging words.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Groups of boxes using flexbox and &lt;code class=&quot;highlighter-rouge&quot;&gt;margin: auto&lt;/code&gt; - vertical alignment is trivial, browser support is great!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;lets-go-on-a-data-bender&quot;&gt;Let’s Go on a Data Bender&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Mike Vattuone&lt;/em&gt; &lt;a href=&quot;https://twitter.com/mvattuone/&quot;&gt;@mvattuone&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Databending is the process of manipulating data in unintended ways to achieve unpredictable results.&lt;/li&gt;
+  &lt;li&gt;Why? “The excitement of witnessing events too momentous for the medium assigned to record them” - Brian Eno.&lt;/li&gt;
+  &lt;li&gt;Incorrect Editing - editing files with a different format.&lt;/li&gt;
+  &lt;li&gt;Reinterpretation - converting data using an unintended process.&lt;/li&gt;
+  &lt;li&gt;Forced Errors - intentionally exploiting bugs to generate unexpected output (MISSINGNO pokemon).&lt;/li&gt;
+  &lt;li&gt;Use Audacity audio effects on images.&lt;/li&gt;
+  &lt;li&gt;AudioShop cli tool to script this.&lt;/li&gt;
+  &lt;li&gt;For realtime, use javascript!
+    &lt;ul&gt;
+      &lt;li&gt;Convert image (or video) to audio buffer, apply audio transforms with WebAudio API, use canvas to display.&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/Theodeus/tuna&quot;&gt;Tuna.js&lt;/a&gt; for the audio effects.&lt;/li&gt;
+      &lt;li&gt;Demo on github pages (awesome!): [link]&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Experiment and play is the first step to finding the practical applications.&lt;/li&gt;
+  &lt;li&gt;Be creative and do things differently.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;from-barely-ready-to-total-betty-how-js-picked-out-my-outfit&quot;&gt;From Barely Ready to Total Betty: How JS Picked Out My Outfit&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Justin Falcone&lt;/em&gt; &lt;a href=&quot;https://twitter.com/modernserf/&quot;&gt;@modernserf&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Recommendation algorithms are “just” databases.&lt;/li&gt;
+  &lt;li&gt;Collect -&amp;gt; Focus pattern.
+    &lt;ul&gt;
+      &lt;li&gt;Database queries and regex are ways to extract bits of data from large collections.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;It’s not “Big Data” but “Big Meaning”
+    &lt;ul&gt;
+      &lt;li&gt;Sculpting possibility space - narrow down infinite possibilities.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Forming outfits comes down to defining relationships between items &lt;code class=&quot;highlighter-rouge&quot;&gt;article&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;formality&lt;/code&gt;.
+    &lt;ul&gt;
+      &lt;li&gt;Graph database fits this system.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ML approach - training data is all known good outfits - but this probably doesn’t exist.&lt;/li&gt;
+  &lt;li&gt;“Expert Systems” is an alternative approach to this problem.
+    &lt;ul&gt;
+      &lt;li&gt;“Rules of Fashion” (abridged)
+        &lt;ul&gt;
+          &lt;li&gt;Pants &amp;amp; shoes must coordinate tones&lt;/li&gt;
+          &lt;li&gt;Shirts &amp;amp; pants must not be same color&lt;/li&gt;
+          &lt;li&gt;All clothes must fit same formality level&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;We typically approach these problems in a human, imperative way “if this then that”, sequence of steps. Usually turns into nested loops.&lt;/li&gt;
+  &lt;li&gt;Solve this by encoding meaning in the relationships, the algorithm does not change.&lt;/li&gt;
+  &lt;li&gt;Declarative approach lets us see the problem all at once.&lt;/li&gt;
+  &lt;li&gt;“Decentering the algorithm” - data could do so much on our behalf.
+    &lt;ul&gt;
+      &lt;li&gt;Example: HTML and CSS.&lt;/li&gt;
+      &lt;li&gt;Invert the dependency between meaning and computation.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;network-not-included&quot;&gt;Network Not Included&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Carmen Bourlon&lt;/em&gt; &lt;a href=&quot;https://twitter.com/carmalou/&quot;&gt;@carmalou&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Using offline apps to improve accessibility. Network connection is now essential for daily life.&lt;/li&gt;
+  &lt;li&gt;Inconsistent internet access vs lack of access.&lt;/li&gt;
+  &lt;li&gt;A lot of people’s only consistent internet access is via smartphone.&lt;/li&gt;
+  &lt;li&gt;How do we address this need
+    &lt;ul&gt;
+      &lt;li&gt;Take apps offline:
+        &lt;ul&gt;
+          &lt;li&gt;Use Electron&lt;/li&gt;
+          &lt;li&gt;Watch for connection with event listeners.&lt;/li&gt;
+          &lt;li&gt;Bundle database into the app.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Make hybrid mobile apps:
+        &lt;ul&gt;
+          &lt;li&gt;Check for network connectivity and make use of local storage.&lt;/li&gt;
+          &lt;li&gt;Be mindful of users’ mobile data caps and smartphone hard drive space.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Downloadable documentation:
+        &lt;ul&gt;
+          &lt;li&gt;Use electron for docs, or PDF.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;At minimum, consider how to handle loss of connection.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;vuejs-in-practice-hybridizing-objects-and-functions&quot;&gt;Vue.js in Practice: Hybridizing Objects and Functions&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Betsy Haibel&lt;/em&gt; &lt;a href=&quot;https://twitter.com/betsythemuffin/&quot;&gt;@betsythemuffin&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Patterns useful for managing large Vue.js apps, but will apply to anything else.&lt;/li&gt;
+  &lt;li&gt;“Reactive Programming” is just like Microsoft Excel.
+    &lt;ul&gt;
+      &lt;li&gt;When data changes, fields that observe that data also change.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Computed properties automatically updates when its dependencies change.&lt;/li&gt;
+  &lt;li&gt;This is two-way data binding(!).
+    &lt;ul&gt;
+      &lt;li&gt;It is not evil.&lt;/li&gt;
+      &lt;li&gt;Naïve implementation causes problems with unexpected state changes.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Needs an observability strategy: &lt;code class=&quot;highlighter-rouge&quot;&gt;vuex&lt;/code&gt; Vue-style global state management.&lt;/li&gt;
+  &lt;li&gt;Use partial application to share computed property logic.&lt;/li&gt;
+  &lt;li&gt;Vuex store is just a dumb Vue instance.
+    &lt;ul&gt;
+      &lt;li&gt;Then we can extend the Vue object with our props and computed props.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;We shouldn’t feel obligation to purity of technique.&lt;/li&gt;
+  &lt;li&gt;Vue has opinions, but Vue will get out of your way if you decide on a different approach.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;-D&lt;/p&gt;</content><author><name></name></author><summary type="html">Bauhaus in the Browser</summary></entry><entry><title type="html">My first homebrew formula</title><link href="http://danpaz.me/blog/homebrew/2017/10/04/first-homebrew-formula.html" rel="alternate" type="text/html" title="My first homebrew formula" /><published>2017-10-04T00:00:00-04:00</published><updated>2017-10-04T00:00:00-04:00</updated><id>http://danpaz.me/blog/homebrew/2017/10/04/first-homebrew-formula</id><content type="html" xml:base="http://danpaz.me/blog/homebrew/2017/10/04/first-homebrew-formula.html">&lt;p&gt;I recently wrote a small note taking cli tool called &lt;a href=&quot;https://github.com/danpaz/notem&quot;&gt;notem&lt;/a&gt;
+and wanted to distribute it via &lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;. There is documentation
+on how to do this as well as examples around the internet but I still found it a
+bit tricky to figure out how things all work together.&lt;/p&gt;
+
+&lt;h2 id=&quot;so-you-want-to-brew&quot;&gt;So you want to brew&lt;/h2&gt;
+
+&lt;p&gt;Homebrew essentially manages packages in a GitHub repo, and adding a new package
+to the registry comes down to making a git branch and pull request to the repo.&lt;/p&gt;
+
+&lt;p&gt;You’ll need:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Homebrew installed&lt;/li&gt;
+  &lt;li&gt;A binary you want to distribute to folks&lt;/li&gt;
+  &lt;li&gt;A public url to that binary&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To get a public url I published my program to a new GitHub repo (danpaz/notem).
+Then I gave it a git tag so that GitHub would generate a tagged release
+automatically based on that tag.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add . &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;Initial commit&quot;&lt;/span&gt;
+git tag 0.0.1
+git push &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push --tags
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This results in a tar archive available at https://github.com/danpaz/notem/archive/0.0.1.tar.gz.&lt;/p&gt;
+
+&lt;h2 id=&quot;formulas&quot;&gt;Formulas&lt;/h2&gt;
+
+&lt;p&gt;Next I had to write a &lt;a href=&quot;https://docs.brew.sh/Formula-Cookbook.html&quot;&gt;formula&lt;/a&gt;, a
+ruby script that tells Homebrew how to install the package. The
+&lt;code class=&quot;highlighter-rouge&quot;&gt;brew create &amp;lt;url&amp;gt;&lt;/code&gt; command helps out by creating the boilerplate file with
+space for me to define the installation of my binary.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew create https://github.com/danpaz/notem/archive/0.0.1.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This created a file for me at /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/notem.rb.
+I deleted the comment blocks and filled in the &lt;code class=&quot;highlighter-rouge&quot;&gt;install&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;test&lt;/code&gt; function
+bodies. Here’s what I ended up with:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Notem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Formula&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;desc&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Super simple note taking system&quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;homepage&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://github.com/danpaz/notem&quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://github.com/danpaz/notem/archive/0.0.1.tar.gz&quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;sha256&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e9aa372dcce352938d0042b96a782de4dd319a5aceeae74dbfdac1c5ba1084f8&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;install&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Add a symlink to my binary.&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;bin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;notem&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Run a command to verify the install. I think this command has to exit with&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# status 0 to pass the test.&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;system&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bin&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/notem&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;-l&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For &lt;code class=&quot;highlighter-rouge&quot;&gt;install&lt;/code&gt;, I added &lt;code class=&quot;highlighter-rouge&quot;&gt;bin.install &quot;notem&quot;&lt;/code&gt; to add my binary to the user’s path.
+For &lt;code class=&quot;highlighter-rouge&quot;&gt;test&lt;/code&gt; I added &lt;code class=&quot;highlighter-rouge&quot;&gt;system &quot;#{bin}/notem&quot;, &quot;-l&quot;&lt;/code&gt; which verifies my binary runs
+successfully after install.&lt;/p&gt;
+
+&lt;p&gt;I found it useful to refer to other packages’ formulas. As mentioned earlier
+these are all on GitHub. For example, &lt;a href=&quot;https://github.com/Homebrew/homebrew-core/blob/master/Formula/tmux.rb&quot;&gt;here’s the tmux formula&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To verify I ran&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew audit --new-formula notem
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;and got this output:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;notem:
+  * GitHub repository not notable enough (&amp;lt;20 forks, &amp;lt;20 watchers and &amp;lt;50 stars)
+  * GitHub repository too new (&amp;lt;30 days old)
+Error: 2 problems in 1 formula
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Ouch.&lt;/p&gt;
+
+&lt;h2 id=&quot;tap-out&quot;&gt;Tap out&lt;/h2&gt;
+
+&lt;p&gt;So my hot new program isn’t official enough for Homebrew.
+Luckily you can still publish your binary as a &lt;a href=&quot;https://docs.brew.sh/brew-tap.html&quot;&gt;tap&lt;/a&gt;,
+a third-party repository.&lt;/p&gt;
+
+&lt;p&gt;Users can then install with an extra command, like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew tap danpaz/tap
+brew install notem
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;That’s good enough for me! Let’s set it up.&lt;/p&gt;
+
+&lt;p&gt;I created a new repo called danpaz/homebrew-tap, and this repo will house all of
+my future brew formulas. In that repo I copied over my &lt;code class=&quot;highlighter-rouge&quot;&gt;notem&lt;/code&gt; formula from earlier:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cp /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/notem.rb ./Formula
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt;ed that to GitHub. That’s it! Now &lt;code class=&quot;highlighter-rouge&quot;&gt;brew tap danpaz/tap&lt;/code&gt; will clone
+this repo to the user’s Taps and let them install my package with &lt;code class=&quot;highlighter-rouge&quot;&gt;brew install notem&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;helpful-links&quot;&gt;Helpful links&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;https://docs.brew.sh/Formula-Cookbook.html&lt;/li&gt;
+  &lt;li&gt;https://speakerdeck.com/defeated/homebrew-publish-your-first-formula&lt;/li&gt;
+  &lt;li&gt;http://kylebebak.github.io/post/distribute-program-via-homebrew&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;-D&lt;/p&gt;</content><author><name></name></author><summary type="html">I recently wrote a small note taking cli tool called notem and wanted to distribute it via Homebrew. There is documentation on how to do this as well as examples around the internet but I still found it a bit tricky to figure out how things all work together.</summary></entry><entry><title type="html">Robbie Holmes on Imposter Syndrome</title><link href="http://danpaz.me/blog/talks/imposter/2017/09/21/robbiethegeek-imposter-syndrome.html" rel="alternate" type="text/html" title="Robbie Holmes on Imposter Syndrome" /><published>2017-09-21T15:00:00-04:00</published><updated>2017-09-21T15:00:00-04:00</updated><id>http://danpaz.me/blog/talks/imposter/2017/09/21/robbiethegeek-imposter-syndrome</id><content type="html" xml:base="http://danpaz.me/blog/talks/imposter/2017/09/21/robbiethegeek-imposter-syndrome.html">&lt;p&gt;Robbie Holmes (&lt;a href=&quot;https://twitter.com/robbiethegeek&quot;&gt;@robbiethegeek&lt;/a&gt;) gave a
+fantastic talk at TechTalkDC yesterday. Robbie is a fountain of wisdom and the
+DC tech community is lucky to have him.&lt;/p&gt;
+
+&lt;p&gt;Here are my notes and takeaways:&lt;/p&gt;
+
+&lt;h2 id=&quot;understand-your-privilege&quot;&gt;Understand your privilege&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Not everyone grew up the same way you did.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;two-big-impacts-of-imposter-syndrome&quot;&gt;Two big impacts of imposter syndrome&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Staying at a job that’s boring or tedious way longer than you should.&lt;/li&gt;
+  &lt;li&gt;Worry people will find out you’re a fraud.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;getting-acqui-hired-is-the-best-way-to-bring-out-your-imposter-syndrome&quot;&gt;Getting acqui-hired is the best way to bring out your imposter syndrome&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;(Zagat to Google)&lt;/li&gt;
+  &lt;li&gt;Didn’t get interviewed, placed in a “web developer” position&lt;/li&gt;
+  &lt;li&gt;Everyone at Google works off of HEAD so you feel like you’re constantly breaking things!&lt;/li&gt;
+  &lt;li&gt;“It was me saying I didn’t have the skills”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;joining-usds&quot;&gt;Joining USDS&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Folks with a ton of empathy and a lot of experience&lt;/li&gt;
+  &lt;li&gt;Healthcare application for Department of Veteran Affairs in node and react&lt;/li&gt;
+  &lt;li&gt;React was not core competency&lt;/li&gt;
+  &lt;li&gt;Team decided to move over to rails first week in&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;community-is-important&quot;&gt;Community is important&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Transitioning from being an attendee to organizer - fake it til you make it&lt;/li&gt;
+  &lt;li&gt;People start looking up to you&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;staying-up-to-date-on-trends&quot;&gt;Staying up to date on trends&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Podcasts&lt;/li&gt;
+  &lt;li&gt;Blogs&lt;/li&gt;
+  &lt;li&gt;Social media&lt;/li&gt;
+  &lt;li&gt;Know how you learn best&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;learn-one-new-skill-at-a-time&quot;&gt;Learn one new skill at a time&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Maybe don’t switch editors when you’re learning a new language&lt;/li&gt;
+  &lt;li&gt;Focus on one thing&lt;/li&gt;
+  &lt;li&gt;Reduce context switching from what you know to what you’re learning&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;imposter-syndrome-coping-strategy&quot;&gt;Imposter syndrome coping strategy&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Become a part of the community
+    &lt;ul&gt;
+      &lt;li&gt;if you’re going to tech events, you’re probably in the top 25% of people at your level because you’re learning from others&lt;/li&gt;
+      &lt;li&gt;Speakers are in the top 10%&lt;/li&gt;
+      &lt;li&gt;Most people don’t engage in community, just because you’re here you are ahead of the curve&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Fake it in public
+    &lt;ul&gt;
+      &lt;li&gt;host a lunch and learn&lt;/li&gt;
+      &lt;li&gt;present at conferences or meetups&lt;/li&gt;
+      &lt;li&gt;become an organizer&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;fin&quot;&gt;Fin&lt;/h2&gt;
+
+&lt;p&gt;A huge thank you to Robbie for sharing his story with us. And thank you Excella
+Consulting for hosting, and for posting a video of this talk!&lt;/p&gt;
+
+&lt;p&gt;Slides: http://slides.com/robbiethegeek/imposter-syndrome&lt;/p&gt;
+
+&lt;p&gt;Video: https://www.youtube.com/watch?v=zRqefvKkgfc&lt;/p&gt;
+
+&lt;p&gt;-D&lt;/p&gt;</content><author><name></name></author><summary type="html">Robbie Holmes (@robbiethegeek) gave a fantastic talk at TechTalkDC yesterday. Robbie is a fountain of wisdom and the DC tech community is lucky to have him.</summary></entry><entry><title type="html">Hosting a Jekyll blog on GitHub pages in a subfolder</title><link href="http://danpaz.me/blog/jekyll/2017/09/20/jekyll-in-subfolder.html" rel="alternate" type="text/html" title="Hosting a Jekyll blog on GitHub pages in a subfolder" /><published>2017-09-20T00:00:00-04:00</published><updated>2017-09-20T00:00:00-04:00</updated><id>http://danpaz.me/blog/jekyll/2017/09/20/jekyll-in-subfolder</id><content type="html" xml:base="http://danpaz.me/blog/jekyll/2017/09/20/jekyll-in-subfolder.html">&lt;p&gt;&lt;strong&gt;TLDR: I commit the output of jekyll build and use a symbolic link to point
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/blog/&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;/jekyll/_site&lt;/code&gt;. Works great!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I recently set up this blog using Jekyll hosted on GitHub pages. It was a lovely
+experience getting started and gave me exactly what I was looking for - a full
+featured blog framework that gets out of my way and lets me just write.&lt;/p&gt;
+
+&lt;p&gt;But there was one gotcha that almost made me abandon ship. I really wanted to
+host the blog at danpaz.me/blog, while keeping the same splash page at danpaz.me
+that I already have in place.&lt;/p&gt;
+
+&lt;p&gt;I took the first step of adding the /blog baseurl in my jekyll configs.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;...
+baseurl: &quot;/blog&quot; # the subpath of your site, e.g. /blog
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then I saw this in the jekyll docs:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/img/jekyll-source-files-root.png&quot; alt=&quot;Source Files Must be in the Root Directory&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;GitHub Pages overrides the “Site Source” configuration value, so if you locate your files anywhere other than the root directory, your site may not build correctly.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Meaning that in order for GitHub to properly build the jekyll site I would have
+to keep all jekyll files at the root of the repo, and the site’s index.html
+would be generated by the jekyll build. So I would lose my splash page! One
+workaround is to &lt;a href=&quot;https://jekyllrb.com/docs/themes/#overriding-theme-defaults&quot;&gt;replace the jekyll theme’s index.html with my own&lt;/a&gt;, but
+then I’d lose the nice blog post list the theme provides.&lt;/p&gt;
+
+&lt;p&gt;Instead, I decided to commit the output of jekyll build in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_site/&lt;/code&gt; directory.
+But to make sure the blog is served at &lt;code class=&quot;highlighter-rouge&quot;&gt;danpaz.me/blog&lt;/code&gt; and not &lt;code class=&quot;highlighter-rouge&quot;&gt;danpaz.me/blog/_site/&lt;/code&gt;
+the built files need to be in a &lt;code class=&quot;highlighter-rouge&quot;&gt;blog&lt;/code&gt; directory in my github repo. I considered
+copying the built files into a &lt;code class=&quot;highlighter-rouge&quot;&gt;blog&lt;/code&gt; directory every time I build with jekyll,
+but I decided to try using a &lt;a href=&quot;https://linux.die.net/man/1/ln&quot;&gt;symlink&lt;/a&gt; to avoid the manual copy step.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ ln -sv jekyll/_site blog
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I wasn’t sure if GitHub would support symbolic links in this way, but turns out
+it works fine!&lt;/p&gt;
+
+&lt;p&gt;Now my workflow is to keep a terminal open with jekyll build watching to rebuild
+the site:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd jekyll
+$ jekyll build --watch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now I can add and edit posts to the &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll/_posts/&lt;/code&gt; directory without thinking
+about building the output. If I need to view my blog locally I instead use
+&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Any thoughts on this approach? Get in touch and let me know!&lt;/p&gt;
+
+&lt;p&gt;-D&lt;/p&gt;</content><author><name></name></author><summary type="html">TLDR: I commit the output of jekyll build and use a symbolic link to point /blog/ to /jekyll/_site. Works great!</summary></entry><entry><title type="html">Hey it’s danpaz on the internet!</title><link href="http://danpaz.me/blog/hello/2017/09/20/hello-world.html" rel="alternate" type="text/html" title="Hey it's danpaz on the internet!" /><published>2017-09-20T00:00:00-04:00</published><updated>2017-09-20T00:00:00-04:00</updated><id>http://danpaz.me/blog/hello/2017/09/20/hello-world</id><content type="html" xml:base="http://danpaz.me/blog/hello/2017/09/20/hello-world.html">&lt;p&gt;Here we go again! This must be my third time starting a blog :)&lt;/p&gt;
+
+&lt;p&gt;I’m trying jekyll on github pages, but had to jump through some hoops to host it
+on /blog while keeping the same homepage at danpaz.me. That’ll be the topic of
+my first post!&lt;/p&gt;
+
+&lt;p&gt;-D&lt;/p&gt;</content><author><name></name></author><summary type="html">Here we go again! This must be my third time starting a blog :)</summary></entry></feed>

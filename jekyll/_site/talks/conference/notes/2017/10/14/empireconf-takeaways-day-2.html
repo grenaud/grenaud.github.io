@@ -1,0 +1,254 @@
+<h2 id="the-rise-of-http2">The rise of HTTP/2</h2>
+
+<p><em>Daniela Matos de Carvalho</em> <a href="https://twitter.com/sericaia/">@sericaia</a></p>
+
+<ul>
+  <li>HTTP 0.9 -&gt; 1.0 -&gt; 1.1. Single connection per request to keep-alive.</li>
+  <li>Head of Line (HOL) blocking. Requires strict order.</li>
+  <li>Introduced HTTP/2, fathered by SPDY.
+    <ul>
+      <li>Streams</li>
+      <li>Resource prioritization (implemented even before HTTP/2)</li>
+      <li>Header compression</li>
+      <li>Push</li>
+    </ul>
+  </li>
+  <li>Try <a href="https://www.wireshark.org/">Wireshark</a> to inspect network activity!</li>
+  <li>To use HTTP/2 with node: Experimental stage 1, behind feature flag <code class="highlighter-rouge">node --expose-http2 index.js</code>.</li>
+  <li>Check out examples at <a href="https://github.com/sericaia/http2-examples-empireconf">https://github.com/sericaia/http2-examples-empireconf</a>.</li>
+  <li>“But I use express/hapi!”
+    <ul>
+      <li>Not yet ready but soon it will be similar</li>
+      <li>Should be in hapi 17.</li>
+    </ul>
+  </li>
+  <li>Use Push.
+    <ul>
+      <li>In server request handler we can pre push assets to http2 stream.</li>
+      <li>Push css, images, etc.</li>
+      <li>Then these won’t be requested by the page later.</li>
+    </ul>
+  </li>
+  <li>Browsers won’t let you use HTTP/2 without a real TLS connection.
+    <ul>
+      <li>Test locally without SSL: open chrome with <code class="highlighter-rouge">--ignore-certificate-errors</code> flag :)</li>
+      <li>But this won’t fully work.</li>
+      <li>Use <code class="highlighter-rouge">{credentials: 'include'}</code> in service worker request handler.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="a-brief-history-of-prototypes">A Brief History of Prototypes</h2>
+
+<p><em>Kat Marchan</em> <a href="https://twitter.com/maybekatz/">@maybekatz</a></p>
+
+<ul>
+  <li>Prototype-Based Object-Oriented Programming: What is it? What is the history? Why did we do this?
+    <ul>
+      <li>In class based languages, overriding behavior requires adding a new class.</li>
+      <li>In prototype based languages, you can clone to reuse parent’s code. Known as <em>delegation</em>.</li>
+      <li>Even JS class syntax papers over prototypes.</li>
+    </ul>
+  </li>
+  <li>The very beginning: <strong>Director</strong> programming language (1976). The “Actor Model.”
+    <ul>
+      <li>Used message passing with <code class="highlighter-rouge">ask</code>, optional asynchronous event loop, delegation based inheritance.</li>
+    </ul>
+  </li>
+  <li><strong>Object(Lisp)</strong> (1985).
+    <ul>
+      <li>Used for lisp machine UI. Similar to 2017 JS.</li>
+      <li>This is validating to the semantics we</li>
+    </ul>
+  </li>
+  <li><strong>Self</strong> (1987).
+    <ul>
+      <li>Built on top of class-based Smalltalk language but with prototypes.</li>
+      <li>Ease of use of a dynamic system but speed to match lower level languages.</li>
+      <li>Biggest influence on modern JS.</li>
+    </ul>
+  </li>
+  <li><strong>Lambdamoo</strong> (1990).
+    <ul>
+      <li>Prototypes for play.</li>
+      <li>Text-based MUD (multi user dungeon) - online multiplayer text based games.</li>
+    </ul>
+  </li>
+  <li><strong>Lua</strong>  (1993).
+    <ul>
+      <li>Metatables is like objects</li>
+      <li>Small language used for gaming.</li>
+    </ul>
+  </li>
+  <li><em><strong>JavaScript</strong></em> (1995).
+    <ul>
+      <li>Famously put together in 10 days.</li>
+      <li>Most widely used prototype language in the world 🌏.</li>
+      <li>Prototypes were a great fit for the DOM.</li>
+    </ul>
+  </li>
+  <li>The Future of JS.
+    <ul>
+      <li><strong>More interactive dev</strong>: hope the need for webpack/babel starts to disappear.</li>
+      <li><strong>Web components</strong> are natural evolution of the platform.</li>
+      <li><strong>Keep JS easy</strong>: simple easy to learn languages drive adoption. Immediate results are delightful.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="why-static-typing-matters-or-how-to-solve-all-your-runtime-errors-with-this-one-neat-trick">Why Static Typing Matters (or How to Solve All Your Runtime Errors With This One Neat Trick)</h2>
+
+<p><em>Eli Perkins</em> <a href="https://twitter.com/_eliperkins/">@_eliperkins</a></p>
+
+<ul>
+  <li>Static typing -&gt; types are known at compile time.</li>
+  <li>Dynamic -&gt; type checking at run time.</li>
+  <li>Types are discovered by <em>annotation</em> or <em>inference</em>.</li>
+  <li>In JS: Flow and Typescript. Roughly equivalent tools.</li>
+  <li>Avoid whole classes of errors before our programs run.
+    <ul>
+      <li>Type mismatches.</li>
+      <li>Unexpected <code class="highlighter-rouge">null</code>s.</li>
+      <li>Typos.</li>
+    </ul>
+  </li>
+  <li>Why do we care?
+    <ul>
+      <li>Bugs are suprises: static types reduce surprises.</li>
+      <li>Errors at run time: users pay the cost. At compile time: developers pay the cost.</li>
+      <li>In Objective-C this leads to app crashes.</li>
+    </ul>
+  </li>
+  <li>Swift - strong static typed language that interops with Obj C.
+    <ul>
+      <li>At Venmo: introduced static typing slowly, starting at the network layer.</li>
+      <li>Added high confidence in a critical piece of the stack.</li>
+    </ul>
+  </li>
+  <li>What’s next for static typing in JS?
+    <ul>
+      <li>Elm
+        <ul>
+          <li>Generates JS with no run time exceptions.</li>
+          <li>Understands your API surface, tells you what semver version bump you need.</li>
+        </ul>
+      </li>
+      <li>ReasonML
+        <ul>
+          <li>Syntax and toolchain for OCaml that compiles to JS.</li>
+          <li>Pattern matching over union types is cool.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Check out Dan Grossman, Programming Languages course on coursera: <a href="https://www.coursera.org/learn/programming-languages">https://www.coursera.org/learn/programming-languages</a>.</li>
+</ul>
+
+<h2 id="bad-performance-is-the-root-of-all-evil">Bad Performance is the Root of All Evil</h2>
+
+<p><em>Dave Thompson</em> <a href="https://twitter.com/limscoder/">@limscoder</a></p>
+
+<ul>
+  <li>Don’t optimize before you measure.</li>
+  <li>Not measuring performance is the root of all evil .</li>
+  <li>RAIL model (or, LIAR model)
+    <ul>
+      <li><strong>L</strong>oad - initial side load - 1000ms.</li>
+      <li><strong>I</strong>dle - perform background tasks.</li>
+      <li><strong>A</strong>nimation - javascript, render, paint - 16ms or 60fps for no jank.</li>
+      <li><strong>R</strong>esponse - delays in interactions - 100ms (should display indicator when &gt; 500ms).</li>
+    </ul>
+  </li>
+  <li>Use “Performance” tab in chrome dev tools.</li>
+  <li>Simple rules to follow:
+    <ul>
+      <li>Optimize network.
+        <ul>
+          <li>Reduce file size. img <code class="highlighter-rouge">srcset</code> attribute. Configure cache headers. Use http2. CDN.</li>
+          <li>Sequential code -&gt; parallel code -&gt; lazy code.</li>
+        </ul>
+      </li>
+      <li>Optimize interaction response.
+        <ul>
+          <li>Make use of <em>idle time</em> <code class="highlighter-rouge">requestIdleCallback</code> fallback to <code class="highlighter-rouge">requestAnimationFrame</code>.</li>
+        </ul>
+      </li>
+      <li>Long frames.
+        <ul>
+          <li>Use “Bottom Up” in devtools to identify slow JS functions.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simulate slowness with network and cpu throttling.</li>
+  <li>Understand your webpack and babel configs!</li>
+  <li><a href="https://github.com/GoogleChrome/lighthouse">Lighthouse</a> audit to help identify and fix common problems.</li>
+  <li>Slides: <a href="https://github.com/limscoder/react-present">https://github.com/limscoder/react-present</a>.</li>
+</ul>
+
+<h2 id="programming-101-learn-english">Programming 101: Learn English</h2>
+
+<p><em>Vanessa Yuen</em> <a href="https://twitter.com/vanessayuenn/">@vanessayuenn</a></p>
+
+<ul>
+  <li>All popular programming languages are written in English.</li>
+  <li>Today to be a programmer you <em>have to learn English</em>.</li>
+  <li>Hurdles:
+    <ul>
+      <li>Memorizing a bunch of words. What if “function” means nothing to you? Reserved words.</li>
+      <li>Coding in a foreign language is basically like coding in emoji <a href="http://www.emojicode.org">http://www.emojicode.org</a></li>
+      <li>Asking questions when you’re lost is even harder in a foreign language. Imposter syndrome ++</li>
+      <li>Stack Overflow explicitly states: “Questions written in non-English should be closed”</li>
+      <li>You have to convince people you can communicate. Fluency != communication skills.</li>
+      <li>Half translated, maybe outdated docs.</li>
+    </ul>
+  </li>
+  <li>How to do better: Make learning accessible regardless of language.
+    <ul>
+      <li>Node - 50% learned Node in their non-native language.</li>
+      <li>Good documentation translation is a bridge between all users.</li>
+      <li>Great example: Angular Chinese docs.</li>
+      <li><strong>Empathy</strong> &amp; patience.</li>
+      <li>Remember your story is not their story.</li>
+    </ul>
+  </li>
+  <li>We have a responsibility to level out the playing field. Diversity in language benefits all.</li>
+</ul>
+
+<h2 id="architecture-as-text-setup-aws-lambda-api-gateway-sns-and-dynamodb-on-easy-mode">Architecture as Text: Setup AWS Lambda, API Gateway, SNS, and DynamoDB on Easy Mode</h2>
+
+<p><em>Angelina Fabbro</em> <a href="https://twitter.com/hopefulcyborg/">@hopefulcyborg</a></p>
+
+<ul>
+  <li>Leveraging new tools in AWS: Lambda, S3, DynamoDB.</li>
+  <li>Not a lot of tools for configuration and deployment.</li>
+  <li>AWS console / cli is not a great experience. “Kitchen sink UI.”</li>
+  <li>Serverless == functions as a service. Amazon abstracts the server altogether.</li>
+  <li>Many parts needed to do anything meaningful:
+    <ul>
+      <li>Route 53 (DNS)</li>
+      <li>API Gateway (routing)</li>
+      <li>Lambda (your code)</li>
+      <li>DynamoDB (optional sessions)</li>
+    </ul>
+  </li>
+  <li>Existing infrastructure-as-code tools (terraform, serverless, AWS SAM)
+    <ul>
+      <li>Describing every resource is verbose and time consuming.</li>
+      <li>Deep proprietary knowledge required.</li>
+      <li>Difficult to read JSON, no comments.</li>
+      <li>Adds cognitive overhead.</li>
+    </ul>
+  </li>
+  <li>Move to <strong>architecture as text</strong>, plaintext manifest file
+    <ul>
+      <li>Minimal <code class="highlighter-rouge">.arc</code> file.</li>
+      <li>Describes how to provision all of the parts.</li>
+      <li><code class="highlighter-rouge">npm i @architect/workflows --save</code></li>
+    </ul>
+  </li>
+  <li>Deploys are fast and boring.</li>
+  <li><a href="https://arc.codes">https://arc.codes</a></li>
+</ul>
+
+<p>-D</p>
