@@ -1,10 +1,9 @@
 ---
 layout: post
-title:  "Eine nachhaltige Windelsysteme"
+title:  "A sustainable diaper system (Europe)"
 date:   2021-02-16 21:59:54 +0100
 categories: sustainability
 ---
-
 
 Disposable diapers are quite convenient but generate large quantities of non-biodegradable waste. In an effort to have a sustainable approach to parenting, my wife and I did a lot of investigation regarding sustainable solutions to the diaper problem. I wanted to share what we have learned. 
 
