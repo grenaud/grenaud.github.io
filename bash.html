@@ -10,4 +10,11 @@ if [ $i -eq 0 ]; then echo 1; else echo 0; fi
 </pre>
 
 
+<p>
+If depending on output of command:
+</p>
+<pre class="wiki">
+if [[ $(grep -c  $i FILE) = 0 ]]; then echo "not found"; else echo "found!" fi
+</pre>
+
 </html>

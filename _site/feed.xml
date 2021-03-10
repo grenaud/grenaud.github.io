@@ -6,9 +6,45 @@
 </description>
     <link>https://grenaud.github.io/</link>
     <atom:link href="https://grenaud.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 12 Feb 2021 16:01:25 +0100</pubDate>
-    <lastBuildDate>Fri, 12 Feb 2021 16:01:25 +0100</lastBuildDate>
+    <pubDate>Wed, 10 Mar 2021 20:57:15 +0100</pubDate>
+    <lastBuildDate>Wed, 10 Mar 2021 20:57:15 +0100</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Eine nachhaltige Windelsysteme</title>
+        <description>&lt;p&gt;Disposable diapers are quite convenient but generate large quantities of non-biodegradable waste. In an effort to have a sustainable approach to parenting, my wife and I did a lot of investigation regarding sustainable solutions to the diaper problem. I wanted to share what we have learned.&lt;/p&gt;
+
+&lt;p&gt;First, a lot of disposable eco-diapers are complete “green washing”. They use labels filled with words like 100% natural but we have never found a disposable biodegradable diaper.&lt;/p&gt;
+
+&lt;p&gt;We therefore opted for reusable washable diapers. It should be noted that this solution uses products sold in Europe, I will use some German words, I do not know the English translation, sorry! First, there is the Mullwindeln, this is the fabric that has direct contact with the skin of the baby. Now the problem is that, a single Mullwindeln does not absorb much. So for the night, this is not great. We therefore added a bamboo layer to absorb a bit more. To clean up,  we opted for muslin face cloth. They are also useful to clean up food on his face. This is a picture of the Mullwindeln, Bambus layer and muslin face cloth:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/windel3.jpg&quot; alt=&quot;Mullwindeln+Bambus layer+muslin face cloth&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We use “snappies” to tie them together. Then comes the external part. We what are the material that could absorb humidity and was biodegradable. The problem with the lot of washable diapers that contain polyester. We therefore opted for wool. We purchased these Uberhosen that go on top of the Mullwindeln. They are easy to put on and the keep the baby warm and his clothes dry. This is the Uberhosen and snappies:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/windel4.jpg&quot; alt=&quot;uberhosen+Snappies&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We found the system convenient. There are several online tutorials that show how to fold the Mullwindeln. First, there is the folding when they are very little (0-5 months old):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/windel1.jpg&quot; alt=&quot;Mullwindeln fur 0-5 Monate&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then the “Drachen” (kite) folding when they are older:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/windel2.jpg&quot; alt=&quot;Mullwindeln fur 5- Monate&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now the problems. First then means that your washing machine will run on average once per 2-days with a washing cycle at 60 degrees. Also, the Mullwindeln will become more and more taunt that means that they are harder to fold. The Uberhosen also shrink plus you need to wash up with a special soap.&lt;/p&gt;
+
+&lt;p&gt;However, I would recommend the system. We are all responsible for moving towards sustainability.&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 15 Jan 2021 21:59:54 +0100</pubDate>
+        <link>https://grenaud.github.io/sustainability/2021/01/15/nachhaltige-windelsysteme.html</link>
+        <guid isPermaLink="true">https://grenaud.github.io/sustainability/2021/01/15/nachhaltige-windelsysteme.html</guid>
+        
+        
+        <category>sustainability</category>
+        
+      </item>
     
       <item>
         <title>How to create a virtual background in Ubuntu for Discord etc</title>
@@ -16,7 +52,7 @@
 
 &lt;p&gt;I am running Ubuntu and needed a way to hide my background in Discord. You after reading a few blog posts, I decided to share what I learned.&lt;/p&gt;
 
-&lt;p&gt;The first step is to procure a green screen. I purchased a relatively cheap one on Alibaba. The second thing is to set up a virtual camera in Ubuntu. &lt;strong&gt;The trick is to capture the camera with the green screen and create a virtual camera that casts your image with the virtual background.&lt;/strong&gt; Believe me, it is less painful than it sounds. The trick is to use two pieces of software, one that will create a virtual camera (v4l2loopback) and OBS studio which will take your camera, replace the green screen with a virtual background and broadcast to the virtual camera.&lt;/p&gt;
+&lt;p&gt;The first step is to procure a green screen. I purchased a relatively cheap one on Alibaba. The second thing is to set up a virtual camera in Ubuntu. &lt;strong&gt;The trick is to capture the camera with the green screen and create a virtual camera that casts your image with the virtual background.&lt;/strong&gt; Believe me, it is less painful than it sounds. The solution is to use two pieces of software, one that will create a virtual camera (v4l2loopback) and OBS studio which will take your camera, replace the green screen with a virtual background and broadcast to the virtual camera.&lt;/p&gt;
 
 &lt;p&gt;First, you need to install some software:&lt;/p&gt;
 
@@ -54,26 +90,25 @@ cmake &lt;span class=&quot;nt&quot;&gt;-DLIBOBS_INCLUDE_DIR&lt;/span&gt;&lt;span
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install obs-studio
 obs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Then, test the virtual camera: go to “Tools” and “V4L2 Video Output”.
-Then you need to set up the path to V4L2 Device. In my case, this is /dev/video2.&lt;/p&gt;
+&lt;p&gt;Then, test the virtual camera: go to “Tools” and “V4L2 Video Output”. You need to set up the path to V4L2 Device. In my case, this is /dev/video2.&lt;/p&gt;
 
 &lt;p&gt;In sources, add Video Capture (this is your webcam). Also, add “Image” as a source and use it to set up the virtual image that you want.&lt;/p&gt;
 
 &lt;p&gt;Then we need to modify our webcam stream using “filters”. We will set up the filters by selecting Video Capture and clicking “Filters”. Three filters are important:&lt;/p&gt;
 &lt;ol&gt;
-  &lt;li&gt;“chroma key” is the actual filter that replaces the green for a virtual background, play with similarity until it works and we can still see your face.&lt;/li&gt;
+  &lt;li&gt;“chroma key” is the actual filter that replaces the green for a virtual background, play with similarity until it works and your face is still clearly visible&lt;/li&gt;
   &lt;li&gt;“color correction” can correct minor color problems&lt;/li&gt;
-  &lt;li&gt;“Crop/pad” is very useful if your green screen does not cover a patch of ceiling or something.&lt;/li&gt;
+  &lt;li&gt;“Crop/pad” is very useful if your green screen does not cover a patch of the ceiling or something.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;And there you go you have a virtual camera like those professional gamers!&lt;/p&gt;
 </description>
         <pubDate>Fri, 15 Jan 2021 21:59:54 +0100</pubDate>
-        <link>https://grenaud.github.io/discord/2021/01/15/virtual-background-discord.html</link>
-        <guid isPermaLink="true">https://grenaud.github.io/discord/2021/01/15/virtual-background-discord.html</guid>
+        <link>https://grenaud.github.io/teaching/2021/01/15/virtual-background-discord.html</link>
+        <guid isPermaLink="true">https://grenaud.github.io/teaching/2021/01/15/virtual-background-discord.html</guid>
         
         
-        <category>discord</category>
+        <category>teaching</category>
         
       </item>
     

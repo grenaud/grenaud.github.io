@@ -2,7 +2,7 @@
 layout: post
 title:  "How to create a virtual background in Ubuntu for Discord etc"
 date:   2021-01-15 21:59:54 +0100
-categories: discord
+categories: teaching
 ---
 Due to the COVID19 situation, I recently had to teach a class via Discord. My new "office" is merely a desk in a kitchen, nothing glamorous. While I was teaching, I wanted to give my family the privacy to come and go so I decided to set up a virtual screen. However, Discord is not like Zoom, you cannot simply set up a virtual screen. 
 
