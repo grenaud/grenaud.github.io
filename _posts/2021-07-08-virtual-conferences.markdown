@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Why conferences should stay (mostly) virtual"
+title:  "Why scientific conferences should stay (mostly) virtual"
 date:   2021-07-08 21:59:54 +0100
 categories: sustainability
 ---
