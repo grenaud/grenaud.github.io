@@ -28,6 +28,7 @@ Such conferences have attendees that sometimes [number in the thousands](https:/
 
 
 ![climate cartoon]({{ site.baseurl }}/images/203708030_3877530365677799_7799140059950494401_n.jpg "Climate cartoon")
+
 (left: "What is this?" right: "It's 200 countries who are sending private jets to the climate change conference so that I stop driving my pickup truck", taken from ["Les images s'expriment"](https://www.facebook.com/Les-images-sexpriment-210158939081645) 
 
 While online tools like Zoom do have their share of [CO2 emissions](https://www.zdnet.com/article/how-much-co2-are-your-zoom-meetings-generating/), they are negligible compared to a transcontinental flight. Science has not collapsed as a result of having virtual conferences and keeping the majority of international conferences virtual is a small compromise given the scale of the climate emergency.
