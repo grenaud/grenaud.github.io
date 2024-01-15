@@ -1,0 +1,74 @@
+---
+layout: post
+title:  "US spelling dominates Google Searches except in some Commonwealth countries, in Canada US spelling is more prevalent in Quebec"
+date:   2024-01-11  00:00:00 +0100
+categories: linguistics
+---
+
+
+# The Transatlantic Tug-of-War of Orthography: Color vs. Colour
+
+It is a truth universally acknowledged that American and British English, while conjoined twins of linguistic heritage, are engaged in a perpetual tug-of-war over orthography. This dialectical divergence, spanning the vastness of the Atlantic, manifests most contentiously in the realm of spelling.
+
+In the post-World War II era, America, unscathed in its industrial might and buoyed by victory on both Atlantic and Pacific fronts, embarked on a cultural and linguistic colonization of its own. Through mechanisms like the [https://en.wikipedia.org/wiki/Bretton_Woods_system Bretton Woods System], air traffic control, shipping routes, and the omnipresent internet, American English began to permeate global consciousness. The first words spoken by humans on the moon were in English, American English. With the the fall of its geopolitical rival, the USSR, America stood unchallenged as the dominant military, cultural and economic hegemon on the planet. The increase of high speed internet further allowed the spread of American culture via video streaming be it Netflix or YouTube. 
+
+To paraphrase Melvin Bragg in "The Adventure of English: The Biography of a Language", Mickey Mouse was far more effective at spreading English than Charles Dickens was. Braggs reminds us that in addition to differences in pronounciation (e.g. Zebra, privacy, etc), Americans and Brits disagree on how to spell certain words. For instance, Brits generally write "organise,colour,tyre,faeces" and Americans write "organize,color,tire,feces". 
+
+While ChatGPT has recently changed the way we look for information, Google is still a very important part of our lives. Can we measure which countries favor UK spelling over the US one using Google Trends?
+
+# Methodology: Google Trends
+
+Using [https://trends.google.com/trends/ Google Trends], a fantastic resource for checking who searches for what, I sought to see which countries favor UK spelling over US spelling. I focused on the last 5 years.
+
+
+# The Results
+
+These are the results for several words:
+
+## -or versus -our
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-40-33.png "Color (US) versus Colour (UK)"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-45-48.png "Humor (US) versus Humour (UK)"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-41-01.png "Neighbor (US) versus Neighbour (UK)"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-42-16.png "Flavor (US) versus Flavour (UK)"
+
+## -ize versus -ise
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-42-58.png "Organize (US) versus Organise (UK)"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-43-36.png "Recognize (US) versus Recognise (UK)"
+
+## -ling versus -lling
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-44-11.png "Traveling (US) versus Travelling (UK)"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-44-37.png "Modeling (US) versus Modelling (UK)"
+
+
+## Miscellaneous
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-39-24.png "Defense (US) versus Defence (UK)"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-40-02.png "Tire (US) versus Tyre (UK)"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-41-53.png "Pedophile (US) versus Paedophile (UK)"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-45-21.png "Analog (US) versus Analogue (UK)"
+
+
+A few key observations: except a few Commonwealth countries namely India, Australia and South Africa, most of the world uses U.S spelling. Canada is a bilingual (English/French) where French is mostly spoken in Quebec. It is historically a British dominion however, it is not immune to this Americanization. Interestingly, this is especially true in Quebec, where the influence of its southern neighbor is palpable.
+
+
+Interestingly, Nigeria, a former British colony, exhibits a gradual shift towards American spelling preferences. This linguistic metamorphosis is a testament to the pervading influence of American culture.
+
+
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-46-54.png "Humor (US) versus Humour (UK) in Nigeria"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-47-11.png "Color (US) versus Colour (UK) in Nigeria"
+
+In the Canadian context, despite the country's British colonial legacy and its unique amalgamation of British and American English, there is a discernible preference for American spelling. This is notably pronounced in Quebec, where the francophone majority likely consumes English content predominantly from American sources.
+
+
+
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-46-23.png "Humor (US) versus Humour (UK) in Canada"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-49-06.png "Honor (US) versus Honour (UK) in Canada"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-49-33.png "Honor (US) versus Honour (UK) in Quebec"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-49-37.png "Honor (US) versus Honour (UK) in Ontario"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-50-15.png "Color (US) versus Colour (UK) in Quebec"
+{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-50-19.png "Color (US) versus Colour (UK) in Ontario"
+
+
+In this era where the United States continues to be the vanguard of technological innovation, especially in AI, this trend towards American orthography seems irrevocably entrenched. The world, it appears, is increasingly coloring its language with American hues, a linguistic testament to the soft power of the United States.
+
+
+
