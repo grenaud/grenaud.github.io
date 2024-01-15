@@ -26,46 +26,45 @@ Using [https://trends.google.com/trends/ Google Trends], a fantastic resource fo
 These are the results for several words:
 
 ## -or versus -our
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-40-33.png "Color (US) versus Colour (UK)"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-45-48.png "Humor (US) versus Humour (UK)"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-41-01.png "Neighbor (US) versus Neighbour (UK)"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-42-16.png "Flavor (US) versus Flavour (UK)"
+![Color]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-40-33.png "Color (US) versus Colour (UK)")
+![Humor({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-45-48.png "Humor (US) versus Humour (UK)")
+![Neighbor]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-41-01.png "Neighbor (US) versus Neighbour (UK)")
+![Flavor]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-42-16.png "Flavor (US) versus Flavour (UK)")
 
 ## -ize versus -ise
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-42-58.png "Organize (US) versus Organise (UK)"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-43-36.png "Recognize (US) versus Recognise (UK)"
+![Organize]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-42-58.png "Organize (US) versus Organise (UK)")
+![Recognize]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-43-36.png "Recognize (US) versus Recognise (UK)")
 
 ## -ling versus -lling
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-44-11.png "Traveling (US) versus Travelling (UK)"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-44-37.png "Modeling (US) versus Modelling (UK)"
+![Traveling]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-44-11.png "Traveling (US) versus Travelling (UK)"
+![Modeling]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-44-37.png "Modeling (US) versus Modelling (UK)"
 
 
 ## Miscellaneous
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-39-24.png "Defense (US) versus Defence (UK)"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-40-02.png "Tire (US) versus Tyre (UK)"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-41-53.png "Pedophile (US) versus Paedophile (UK)"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-45-21.png "Analog (US) versus Analogue (UK)"
+![Defense]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-39-24.png "Defense (US) versus Defence (UK)")
+![Tire]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-40-02.png "Tire (US) versus Tyre (UK)")
+![Pedophile]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-41-53.png "Pedophile (US) versus Paedophile (UK)")
+![Analog]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-45-21.png "Analog (US) versus Analogue (UK)")
 
 
-A few key observations: except a few Commonwealth countries namely India, Australia and South Africa, most of the world uses U.S spelling. Canada is a bilingual (English/French) where French is mostly spoken in Quebec. It is historically a British dominion however, it is not immune to this Americanization. Interestingly, this is especially true in Quebec, where the influence of its southern neighbor is palpable.
-
+A few key observations: except a few Commonwealth countries namely India, Australia and South Africa, most of the world uses U.S spelling. Canada is a bilingual (English/French) where French is mostly spoken in Quebec. It is historically a British dominion however, it is not immune to this Americanization. 
 
 Interestingly, Nigeria, a former British colony, exhibits a gradual shift towards American spelling preferences. This linguistic metamorphosis is a testament to the pervading influence of American culture.
 
 
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-46-54.png "Humor (US) versus Humour (UK) in Nigeria"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-47-11.png "Color (US) versus Colour (UK) in Nigeria"
+![HumorNigeria]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-46-54.png "Humor (US) versus Humour (UK) in Nigeria")
+![ColoorNigeria]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-47-11.png "Color (US) versus Colour (UK) in Nigeria")
 
 In the Canadian context, despite the country's British colonial legacy and its unique amalgamation of British and American English, there is a discernible preference for American spelling. This is notably pronounced in Quebec, where the francophone majority likely consumes English content predominantly from American sources.
 
 
 
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-46-23.png "Humor (US) versus Humour (UK) in Canada"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-49-06.png "Honor (US) versus Honour (UK) in Canada"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-49-33.png "Honor (US) versus Honour (UK) in Quebec"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-49-37.png "Honor (US) versus Honour (UK) in Ontario"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-50-15.png "Color (US) versus Colour (UK) in Quebec"
-{{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-50-19.png "Color (US) versus Colour (UK) in Ontario"
+![HumorCA]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-46-23.png "Humor (US) versus Humour (UK) in Canada")
+![HonorCA]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-49-06.png "Honor (US) versus Honour (UK) in Canada")
+![HonorQC]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-49-33.png "Honor (US) versus Honour (UK) in Quebec")
+![HonorON]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-49-37.png "Honor (US) versus Honour (UK) in Ontario")
+![ColorQC]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-50-15.png "Color (US) versus Colour (UK) in Quebec")
+![ColorON]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-50-19.png "Color (US) versus Colour (UK) in Ontario")
 
 
 In this era where the United States continues to be the vanguard of technological innovation, especially in AI, this trend towards American orthography seems irrevocably entrenched. The world, it appears, is increasingly coloring its language with American hues, a linguistic testament to the soft power of the United States.
