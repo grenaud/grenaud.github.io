@@ -27,9 +27,11 @@ These are the results for several words:
 
 ## -or versus -our
 ![Color]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-40-33.png "Color (US) versus Colour (UK)")
-![Humor]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-45-48.png "Humor (US) versus Humour (UK)")
 ![Neighbor]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-41-53.png "Neighbor (US) versus Neighbour (UK)")
 ![Flavor]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-42-16.png "Flavor (US) versus Flavour (UK)")
+
+At first, it seems that Canada prefers "Humour" however, this is because of Quebec which searches in French (see below):
+![Humor]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-45-48.png "Humor (US) versus Humour (UK)")
 
 ## -ize versus -ise
 ![Organize]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-42-58.png "Organize (US) versus Organise (UK)")
@@ -61,12 +63,15 @@ Interestingly, Nigeria, a former British colony, exhibits a gradual shift toward
 In the Canadian context, despite the country's British colonial legacy and its unique amalgamation of British and American English, there is a discernible preference for American spelling. This is notably pronounced in Quebec, where the francophone majority likely consumes English content predominantly from American sources.
 
 
-![HumorCA]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-46-23.png "Humor (US) versus Humour (UK) in Canada")
 ![HonorCA]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-49-06.png "Honor (US) versus Honour (UK) in Canada")
 ![HonorQC]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-49-33.png "Honor (US) versus Honour (UK) in Quebec")
 ![HonorON]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-49-37.png "Honor (US) versus Honour (UK) in Ontario")
 ![ColorQC]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-50-15.png "Color (US) versus Colour (UK) in Quebec")
 ![ColorON]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-50-19.png "Color (US) versus Colour (UK) in Ontario")
+
+British spelling seems to be prefered in Quebec for "humor" but that is only because [humour](https://dictionnaire.lerobert.com/definition/humour) is in French:
+
+![HumorCA]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-46-23.png "Humor (US) versus Humour (UK) in Canada")
 
 Of course, this inquiry has several limitations. One of which is are Google users truly knowingly typing their search words or are they merely searching for a movie title or lyrics of a song and therefore copy-pasting from a website. In this era where the United States continues to be the vanguard of technological innovation, especially in AI, this trend towards American orthography seems irrevocably entrenched. The world, it appears, is increasingly coloring its language with American hues, a linguistic testament to the soft power of the United States.
 
