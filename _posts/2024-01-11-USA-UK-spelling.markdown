@@ -18,7 +18,7 @@ While ChatGPT has recently changed the way we look for information, Google is st
 
 # Methodology: Google Trends
 
-Using [https://trends.google.com/trends/ Google Trends], a fantastic resource for checking who searches for what, I sought to see which countries favor UK spelling over US spelling. I focused on the last 5 years.
+Using [Google Trends](https://trends.google.com/trends/), a fantastic resource for checking who searches for what, I sought to see which countries favor UK spelling over US spelling. I focused on the last 5 years.
 
 
 # The Results
