@@ -10,7 +10,7 @@ categories: linguistics
 
 It is a truth universally acknowledged that American and British English, while conjoined twins of linguistic heritage, are engaged in a perpetual tug-of-war over orthography. This dialectical divergence, spanning the vastness of the Atlantic, manifests most contentiously in the realm of spelling.
 
-In the post-World War II era, America, unscathed in its industrial might and buoyed by victory on both Atlantic and Pacific fronts, embarked on a cultural and linguistic colonization of its own. Through mechanisms like the [https://en.wikipedia.org/wiki/Bretton_Woods_system Bretton Woods System], air traffic control, shipping routes, and the omnipresent internet, American English began to permeate global consciousness. The first words spoken by humans on the moon were in English, American English. With the the fall of its geopolitical rival, the USSR, America stood unchallenged as the dominant military, cultural and economic hegemon on the planet. The increase of high speed internet further allowed the spread of American culture via video streaming be it Netflix or YouTube. 
+In the post-World War II era, America, unscathed in its industrial might and buoyed by victory on both Atlantic and Pacific fronts, embarked on a cultural and linguistic colonization of its own. Through mechanisms like the [Bretton Woods System](https://en.wikipedia.org/wiki/Bretton_Woods_system), air traffic control, shipping routes, and the omnipresent internet, American English began to permeate global consciousness. The first words spoken by humans on the moon were in English, American English. With the the fall of its geopolitical rival, the USSR, America stood unchallenged as the dominant military, cultural and economic hegemon on the planet. The increase of high speed internet further allowed the spread of American culture via video streaming be it Netflix or YouTube. 
 
 To paraphrase Melvin Bragg in "The Adventure of English: The Biography of a Language", Mickey Mouse was far more effective at spreading English than Charles Dickens was. Braggs reminds us that in addition to differences in pronounciation (e.g. Zebra, privacy, etc), Americans and Brits disagree on how to spell certain words. For instance, Brits generally write "organise,colour,tyre,faeces" and Americans write "organize,color,tire,feces". 
 
@@ -27,24 +27,24 @@ These are the results for several words:
 
 ## -or versus -our
 ![Color]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-40-33.png "Color (US) versus Colour (UK)")
-![Humor({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-45-48.png "Humor (US) versus Humour (UK)")
-![Neighbor]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-41-01.png "Neighbor (US) versus Neighbour (UK)")
-![Flavor]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-42-16.png "Flavor (US) versus Flavour (UK)")
+![Humor({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-45-48.png "Humor (US) versus Humour (UK)")
+![Neighbor]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-41-01.png "Neighbor (US) versus Neighbour (UK)")
+![Flavor]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-42-16.png "Flavor (US) versus Flavour (UK)")
 
 ## -ize versus -ise
-![Organize]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-42-58.png "Organize (US) versus Organise (UK)")
-![Recognize]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-43-36.png "Recognize (US) versus Recognise (UK)")
+![Organize]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-42-58.png "Organize (US) versus Organise (UK)")
+![Recognize]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-43-36.png "Recognize (US) versus Recognise (UK)")
 
 ## -ling versus -lling
-![Traveling]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-44-11.png "Traveling (US) versus Travelling (UK)"
-![Modeling]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-44-37.png "Modeling (US) versus Modelling (UK)"
+![Traveling]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-44-11.png "Traveling (US) versus Travelling (UK)"
+![Modeling]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-44-37.png "Modeling (US) versus Modelling (UK)"
 
 
 ## Miscellaneous
 ![Defense]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-39-24.png "Defense (US) versus Defence (UK)")
 ![Tire]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-40-02.png "Tire (US) versus Tyre (UK)")
-![Pedophile]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-41-53.png "Pedophile (US) versus Paedophile (UK)")
-![Analog]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_10-45-21.png "Analog (US) versus Analogue (UK)")
+![Pedophile]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-41-01.png "Pedophile (US) versus Paedophile (UK)")
+![Analog]({{ site.baseurl }}/images/Screenshot_from_2024-01-10_12-45-21.png "Analog (US) versus Analogue (UK)")
 
 
 A few key observations: except a few Commonwealth countries namely India, Australia and South Africa, most of the world uses U.S spelling. Canada is a bilingual (English/French) where French is mostly spoken in Quebec. It is historically a British dominion however, it is not immune to this Americanization. 
