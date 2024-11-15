@@ -1,5 +1,13 @@
-# How do Arabic speakers use the internet? Well...mostly not in Arabic.
+---
+layout: post
+title:  "How do Arabic speakers use the internet? Well...mostly not in Arabic."
+date:   2024-11-15  00:00:00 +0100
+categories: linguistics
+---
 
+
+
+# How do Arabic speakers use the internet? 
 
 One of the many intriguing observations one makes while traveling in Arabic-speaking countries is the linguistic chaos evident in something as mundane yet revealing as a text message or a search query. There’s no universal language of communication—not even close. Some people opt for Arabic, complete with its script. Others, use Arabic transliterated into the Latin alphabet. Then there are those who bypass Arabic entirely, preferring English or even French.
 
@@ -28,16 +36,16 @@ It is worth remembering that Algeria’s relationship with France is quite unlik
 
 
 ### Map and Trends for Morocco
-![Morocco Map](./images/blog_arabic/MAR_map.png)
-![Morocco Trends](./images/blog_arabic/MAR_trends.png)
+![Morocco Map](/images/blog_arabic/MAR_map.png)
+![Morocco Trends](/images/blog_arabic/MAR_trends.png)
 
 ### Map and Trends for Algeria
-![Algeria Map](./images/blog_arabic/DZA_map.png)
-![Algeria Trends](./images/blog_arabic/DZA_trends.png)
+![Algeria Map](/images/blog_arabic/DZA_map.png)
+![Algeria Trends](/images/blog_arabic/DZA_trends.png)
 
 ### Map and Trends for Tunisia
-![Tunisia Map](./images/blog_arabic/TUN_map.png)
-![Tunisia Trends](./images/blog_arabic/TUN_trends.png)
+![Tunisia Map](/images/blog_arabic/TUN_map.png)
+![Tunisia Trends](/images/blog_arabic/TUN_trends.png)
 
 ---
 
@@ -49,18 +57,18 @@ Jordan, too, finds itself in a linguistic deadlock, with English and Arabic vyin
 
 
 ### Map of Egypt
-![Egypt Map](./images/blog_arabic/EGY_map.png)
+![Egypt Map](/images/blog_arabic/EGY_map.png)
 
 ### Google Trends in Egypt
-![Egypt Trends](./images/blog_arabic/EGY_trends.png)
+![Egypt Trends](/images/blog_arabic/EGY_trends.png)
 
 
 
 ### Map of Jordan
-![Jordan Map](./images/blog_arabic/JOR_map.png)
+![Jordan Map](/images/blog_arabic/JOR_map.png)
 
 ### Google Trends in Jordan
-![Jordan Trends](./images/blog_arabic/JOR_trends.png)
+![Jordan Trends](/images/blog_arabic/JOR_trends.png)
 
 
 
@@ -72,20 +80,20 @@ Now we enter a world where Arabic reigns supreme. In Libya, Sudan, Syria, and Ye
 
 
 ### Map and Trends for Libya
-![Libya Map](./images/blog_arabic/LBY_map.png)
-![Libya Trends](./images/blog_arabic/LBY_trends.png)
+![Libya Map](/images/blog_arabic/LBY_map.png)
+![Libya Trends](/images/blog_arabic/LBY_trends.png)
 
 ### Map and Trends for Sudan
-![Sudan Map](./images/blog_arabic/SDN_map.png)
-![Sudan Trends](./images/blog_arabic/SDN_trends.png)
+![Sudan Map](/images/blog_arabic/SDN_map.png)
+![Sudan Trends](/images/blog_arabic/SDN_trends.png)
 
 ### Map and Trends for Syria
-![Syria Map](./images/blog_arabic/SYR_map.png)
-![Syria Trends](./images/blog_arabic/SYR_trends.png)
+![Syria Map](/images/blog_arabic/SYR_map.png)
+![Syria Trends](/images/blog_arabic/SYR_trends.png)
 
 ### Map and Trends for Yemen
-![Yemen Map](./images/blog_arabic/YEM_map.png)
-![Yemen Trends](./images/blog_arabic/YEM_trends.png)
+![Yemen Map](/images/blog_arabic/YEM_map.png)
+![Yemen Trends](/images/blog_arabic/YEM_trends.png)
 
 
 ---
@@ -96,28 +104,28 @@ Ah, the Khaleej. The birthplace of the Arabic language, where, paradoxically, En
 
 
 ### Map and Trends for UAE
-![UAE Map](./images/blog_arabic/ARE_map.png)
-![UAE Trends](./images/blog_arabic/ARE_trends.png)
+![UAE Map](/images/blog_arabic/ARE_map.png)
+![UAE Trends](/images/blog_arabic/ARE_trends.png)
 
 ### Map and Trends for Bahrain
-![Bahrain Map](./images/blog_arabic/BHR_map.png)
-![Bahrain Trends](./images/blog_arabic/BHR_trends.png)
+![Bahrain Map](/images/blog_arabic/BHR_map.png)
+![Bahrain Trends](/images/blog_arabic/BHR_trends.png)
 
 ### Map and Trends for Kuwait
-![Kuwait Map](./images/blog_arabic/KWT_map.png)
-![Kuwait Trends](./images/blog_arabic/KWT_trends.png)
+![Kuwait Map](/images/blog_arabic/KWT_map.png)
+![Kuwait Trends](/images/blog_arabic/KWT_trends.png)
 
 ### Map and Trends for Oman
-![Oman Map](./images/blog_arabic/OMN_map.png)
-![Oman Trends](./images/blog_arabic/OMN_trends.png)
+![Oman Map](/images/blog_arabic/OMN_map.png)
+![Oman Trends](/images/blog_arabic/OMN_trends.png)
 
 ### Map and Trends for Qatar
-![Qatar Map](./images/blog_arabic/QAT_map.png)
-![Qatar Trends](./images/blog_arabic/QAT_trends.png)
+![Qatar Map](/images/blog_arabic/QAT_map.png)
+![Qatar Trends](/images/blog_arabic/QAT_trends.png)
 
 ### Map and Trends for Saudi Arabia
-![Saudi Arabia Map](./images/blog_arabic/SAU_map.png)
-![Saudi Arabia Trends](./images/blog_arabic/SAU_trends.png)
+![Saudi Arabia Map](/images/blog_arabic/SAU_map.png)
+![Saudi Arabia Trends](/images/blog_arabic/SAU_trends.png)
 
 ---
 
@@ -127,8 +135,8 @@ Lebanon is a linguistic kaleidoscope. Before 2011, French and English were neck 
 
 
 ### Map and Trends for Lebanon
-![Lebanon Map](./images/blog_arabic/LBN_map.png)
-![Lebanon Trends](./images/blog_arabic/LBN_trends.png)
+![Lebanon Map](/images/blog_arabic/LBN_map.png)
+![Lebanon Trends](/images/blog_arabic/LBN_trends.png)
 
 
 
@@ -141,8 +149,8 @@ In Iraq, the situation is no less fascinating. Arabic once dominated searches, b
 
 
 ### Map and Trends for Iraq
-![Iraq Map](./images/blog_arabic/IRQ_map.png)
-![Iraq Trends](./images/blog_arabic/IRQ_trends.png)
+![Iraq Map](/images/blog_arabic/IRQ_map.png)
+![Iraq Trends](/images/blog_arabic/IRQ_trends.png)
 
 
 
