@@ -16,7 +16,7 @@ This eclectic linguistic dance begs the question: Is there a way to gauge this m
 Before we dive into the data, some disclaimers are in order:
 
 * I did not investigate minority languages like Berber or Kurdish. A topic for another day, perhaps.
-* I couldn't get sufficient data for the Palestinian territories. That, too, is telling.
+* I couldn't get sufficient data for the Palestinian territories.
 
 
 
